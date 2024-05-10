@@ -14,8 +14,9 @@
       <a-cursor position="0 0 -1" geometry="primitive: ring; radiusOuter: 0.015"
         material="color: black; shader: flat"></a-cursor>
     </a-camera>
+    
     <!-- Sol -->
-    <a-sphere position="100 100 -20" radius="5" color="yellow"></a-sphere>
+    <a-entity position="100 100 -20" a-entity id="sol" scale="5 5 5" gltf-model="url(./assets/3d-models/sun.glb)" light="type: point; intensity: 2;"></a-entity>
 
     <!-- Areia -->
     <a-plane position="0 0.1 0" rotation="-90 0 0" width="50" height="50" color="tan"></a-plane>
@@ -26,16 +27,21 @@
     <!-- Arvore -->
     <a-entity position="-10 0 -20">
       <a-cylinder radius="1" height="10" color="brown"></a-cylinder>
-      <a-cone position="0 10 0" radius-bottom="5" radius-top="1" height="10" color="green"></a-cone>
+      <a-cone src="assets/textures/three-leaves.webp" position="0 10 0" radius-bottom="5" radius-top="1" height="10" color="green"></a-cone>
     </a-entity>
+    
+    <!-- Letra E -->
+    <a-entity id="letter-e" class="letters" position="10 5 -20" scale="10 10 10" gltf-model="url(./assets/3d-models/letter-E.glb)" animation="property: position; dur: 2000; easing: easeInOutSine; from: 10 5 -20; to: 10 6 -20">
+    </a-entity>
+
+    <!-- Lousa / Quadro negro -->
+    <a-entity id="blackboard" position="-25 3.1 -5" rotation="0 90 0" scale="15 15 15" gltf-model="url(./assets/3d-models/blackboard.glb)"></a-entity>
+
     
     <!-- Terra -->
-    <a-entity id="terra" scale="0.7 0.7 0.7" gltf-model="url(./assets/earth.glb)" position="-25 10 -20" meu-controle>
+    <a-entity id="terra" scale="0.7 0.7 0.7" gltf-model="url(./assets/3d-models/earth.glb)" position="-25 20 -50" animation="property: rotation; loop: true; dur: 3000; easing: linear; from: 0 0 0; to: 0 360 0">
       <a-animation attribute="rotation" to="0 360 0" repeat="indefinite" dur="2000" easing="linear"></a-animation>
     </a-entity>
-    
-    <!-- Skybox -->
-    <a-sky color="#87CEEB"></a-sky>
     
     <!-- Luz Direcional -->
     <a-light type="directional" position="-3 4 0" target="#sol"></a-light>
@@ -52,12 +58,12 @@
       </a-camera>
     </a-entity>
 
-
     <a-sky src="https://cdn.aframe.io/a-painter/images/sky.jpg"></a-sky>
 
     <!-- Blocos com a palavra "FELIPE" -->
-    <a-text value="BEM VINDO AO MEU WEBSPACE - POR FELIPE" color="black" position="-4 1.5 -10" scale="2 2 2"></a-text>
+    <a-text value="BEM VINDO AO MEU WEBSPACE - POR LUCAS" color="black" position="-4 1.5 -10" scale="2 2 2"></a-text>
   </a-scene>
   <script src="./script.js"></script>
+  <script src="./animation.js"></script>
 </body>
 </html>

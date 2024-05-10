@@ -16,8 +16,6 @@ document.addEventListener('mousemove', (event) => {
 
 // =======================================
 
-console.log(AFRAME);
-
 AFRAME.registerComponent('meu-controle', {
   init: () => {
     let el = this.el;
