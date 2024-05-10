@@ -11,7 +11,7 @@
 
 <body>
   <a-scene>
-    <a-camera id="camera" position="0 4 10" meu-controle>
+    <a-camera id="camera" position="0 6 10" meu-controle>
       <a-cursor position="0 0 -1" geometry="primitive: ring; radiusOuter: 0.015"
         material="color: black; shader: flat"></a-cursor>
     </a-camera>
@@ -20,7 +20,7 @@
     <a-entity position="100 100 -20" a-entity id="sol" scale="5 5 5" gltf-model="url(./src/assets/models/sun.glb)" light="type: point; intensity: 2;"></a-entity>
 
     <!-- Areia -->
-    <a-plane position="0 0.1 0" rotation="-90 0 0" width="50" height="50" color="tan"></a-plane>
+    <a-plane src="./src/assets/textures/classroom-floor.jpg" position="0 0.1 0" rotation="-90 0 0" width="50" height="50" color="tan"></a-plane>
 
     <!-- Mar -->
     <a-plane position="0 0 0" rotation="-90 0 0" width="100" height="100" color="blue"></a-plane>
@@ -36,8 +36,13 @@
     </a-entity>
 
     <!-- Lousa / Quadro negro -->
-    <a-entity id="blackboard" position="-25 3.1 -5" rotation="0 90 0" scale="15 15 15" gltf-model="url(./src/assets/models/blackboard.glb)"></a-entity>
+    <a-entity id="blackboard" position="-25 5.3 5" rotation="0 90 0" scale="25 25 25" gltf-model="url(./src/assets/models/blackboard.glb)"></a-entity>
 
+    <!-- Cadeira e mesa / Secretária -->
+    <a-entity class="table-chair" position="0 0 0" rotation="0 90 0" scale="70 70 70" gltf-model="url(./src/assets/models/table-chair.glb)"></a-entity>
+    <a-entity class="table-chair" position="15 0 0" rotation="0 90 0" scale="70 70 70" gltf-model="url(./src/assets/models/table-chair.glb)"></a-entity>
+    <a-entity class="table-chair" position="0 0 10" rotation="0 90 0" scale="70 70 70" gltf-model="url(./src/assets/models/table-chair.glb)"></a-entity>
+    <a-entity class="table-chair" position="15 0 10" rotation="0 90 0" scale="70 70 70" gltf-model="url(./src/assets/models/table-chair.glb)"></a-entity>
     
     <!-- Terra -->
     <a-entity id="terra" scale="0.7 0.7 0.7" gltf-model="url(./src/assets/models/earth.glb)" position="-25 20 -50" animation="property: rotation; loop: true; dur: 3000; easing: linear; from: 0 0 0; to: 0 360 0">
