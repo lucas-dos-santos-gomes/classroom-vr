@@ -1,6 +1,6 @@
-# webSpace
+# A-Frame test
 
-Este é um exemplo de um cenário interativo criado usando a biblioteca A-Frame. O cenário inclui um sol, uma praia com areia e mar, uma palmeira, um céu colorido, luz direcional, câmera interativa e um texto de boas-vindas.
+Este é um exemplo de um cenário interativo criado usando a biblioteca A-Frame. O cenário inclui um sol, uma palmeira, um céu estrelado, luz direcional, câmera interativa e testes de animação.
 
 ## Como Usar
 
@@ -11,14 +11,12 @@ Este é um exemplo de um cenário interativo criado usando a biblioteca A-Frame.
 ## Elementos Incluídos
 
 - Um sol amarelo no céu.
-- Uma área de areia no chão.
-- Uma extensão de água representando o mar.
 - Uma palmeira com um tronco marrom e copa verde.
-- Um céu colorido de fundo.
+- Um céu estrelado de fundo.
 - Uma luz direcional para iluminar a cena.
 - Uma câmera interativa para explorar o ambiente.
 - Teleportação para mover a câmera para diferentes áreas.
-- Um texto de boas-vindas com a mensagem "BEM VINDO AO MEU WEBSPACE - POR FELIPE".
+- Um texto de boas-vindas.
   
 ## Créditos
 
