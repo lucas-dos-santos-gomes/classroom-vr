@@ -5,13 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-  <!-- <script src="./src/scripts/attributes.js"></script> -->
+  <script src="./src/scripts/components.js"></script>
   <title>Cenário interativo - VR</title>
 </head>
 
 <body>
   <a-scene>
-    <a-camera id="camera" position="0 6 10" meu-controle>
+    <a-camera id="camera" position="0 6 10" my-control>
       <a-cursor position="0 0 -1" geometry="primitive: ring; radiusOuter: 0.015"
         material="color: black; shader: flat"></a-cursor>
     </a-camera>
@@ -33,6 +33,9 @@
     
     <!-- Letra E -->
     <a-entity id="letter-e" class="letters" position="10 5 -20" scale="10 10 10" gltf-model="url(./src/assets/models/letter-E.glb)" animation="property: position; dur: 2000; easing: easeInOutSine; from: 10 5 -20; to: 10 6 -20">
+    </a-entity>
+    
+    <a-entity position="15 5.2 10" scale="3 3 3" gltf-model="url(./src/assets/models/letter-E.glb)" animation="property: rotation; loop: true; dur: 3000; easing: linear; from: 0 0 0; to: 0 360 0">
     </a-entity>
 
     <!-- Lousa / Quadro negro -->
@@ -58,7 +61,7 @@
     </a-camera> -->
 
     <!-- Teleportação -->
-    <a-entity id="cameraRig" meu-controle>
+    <a-entity id="cameraRig" my-control>
       <a-entity id="teleportOrigin"></a-entity>
       <a-camera position="0 1.6 0" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #teleportOrigin">
       </a-camera>
