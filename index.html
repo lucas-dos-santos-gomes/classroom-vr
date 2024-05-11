@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-  <script src="./src/scripts/components.js"></script>
   <title>Cenário interativo - VR</title>
+  <script src="./src/scripts/components.js"></script>
 </head>
-
 <body>
   <a-scene>
-    <a-camera id="camera" position="0 6 10" my-control>
-      <a-cursor position="0 0 -1" geometry="primitive: ring; radiusOuter: 0.015"
-        material="color: black; shader: flat"></a-cursor>
+    <!-- Primeira pessoa -->
+    <a-camera id="camera" position="0 6 10" squat>
+      <a-cursor position="0 0 -1" geometry="primitive: ring; radiusOuter: 0.015" material="color: black; shader: flat"></a-cursor>
     </a-camera>
     
     <!-- Sol -->
     <a-entity position="100 100 -20" a-entity id="sol" scale="5 5 5" gltf-model="url(./src/assets/models/sun.glb)" light="type: point; intensity: 2;"></a-entity>
 
-    <!-- Areia -->
+    <!-- Terra -->
+    <a-entity id="terra" scale="0.7 0.7 0.7" gltf-model="url(./src/assets/models/earth.glb)" position="-25 20 -50" animation="property: rotation; loop: true; dur: 3000; easing: linear; from: 0 0 0; to: 0 360 0">
+      <a-animation attribute="rotation" to="0 360 0" repeat="indefinite" dur="2000" easing="linear"></a-animation>
+    </a-entity>
+
+    <!-- Piso -->
     <a-plane src="./src/assets/textures/classroom-floor.jpg" position="0 0.1 0" rotation="-90 0 0" width="50" height="50" color="tan"></a-plane>
 
     <!-- Mar -->
@@ -38,8 +41,12 @@
     <a-entity position="15 5.2 10" scale="3 3 3" gltf-model="url(./src/assets/models/letter-E.glb)" animation="property: rotation; loop: true; dur: 3000; easing: linear; from: 0 0 0; to: 0 360 0">
     </a-entity>
 
+    
     <!-- Lousa / Quadro negro -->
     <a-entity id="blackboard" position="-25 5.3 5" rotation="0 90 0" scale="25 25 25" gltf-model="url(./src/assets/models/blackboard.glb)"></a-entity>
+
+    <!-- Giz de cera -->
+    <a-plane position="-18.5 7 5" height="2" width="0.5" rotation="0 90 0"></a-plane>
 
     <!-- Cadeira e mesa / Secretária -->
     <a-entity class="table-chair" position="0 0 0" rotation="0 90 0" scale="70 70 70" gltf-model="url(./src/assets/models/table-chair.glb)"></a-entity>
@@ -47,25 +54,14 @@
     <a-entity class="table-chair" position="0 0 10" rotation="0 90 0" scale="70 70 70" gltf-model="url(./src/assets/models/table-chair.glb)"></a-entity>
     <a-entity class="table-chair" position="15 0 10" rotation="0 90 0" scale="70 70 70" gltf-model="url(./src/assets/models/table-chair.glb)"></a-entity>
     
-    <!-- Terra -->
-    <a-entity id="terra" scale="0.7 0.7 0.7" gltf-model="url(./src/assets/models/earth.glb)" position="-25 20 -50" animation="property: rotation; loop: true; dur: 3000; easing: linear; from: 0 0 0; to: 0 360 0">
-      <a-animation attribute="rotation" to="0 360 0" repeat="indefinite" dur="2000" easing="linear"></a-animation>
-    </a-entity>
-    
     <!-- Luz Direcional -->
     <a-light type="directional" position="-3 4 0" target="#sol"></a-light>
 
-    <!-- Câmera e Cursor -->
-    <!-- <a-camera position="0 4 0">
-      <a-cursor></a-cursor>
-    </a-camera> -->
-
-    <!-- Teleportação -->
-
+    <!-- Céu -->
     <a-sky src="https://cdn.aframe.io/a-painter/images/sky.jpg"></a-sky>
 
     <!-- Blocos com a palavra "FELIPE" -->
-    <a-text value="BEM VINDO AO MEU WEBSPACE - POR LUCAS" color="black" position="-4 1.5 -10" scale="2 2 2"></a-text>
+    <a-text value="BEM VINDO AO MEU ESPAÇO VIRTUAL - LUCAS" color="black" position="-4 1.5 -10" scale="2 2 2"></a-text>
   </a-scene>
   <script src="./src/scripts/camera.js"></script>
   <script src="./src/scripts/letters-animation.js"></script>
