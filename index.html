@@ -11,7 +11,7 @@
   <a-scene>
     <!-- Primeira pessoa -->
     <a-camera id="camera" position="0 6 10" moviment>
-      <a-cursor position="0 0 -1" geometry="primitive: ring; radiusOuter: 0.015" material="color: black; shader: flat"></a-cursor>
+      <a-cursor id="cursor" position="0 0 -1" geometry="primitive: ring; radiusOuter: 0.015" material="color: black; shader: flat"></a-cursor>
     </a-camera>
     
     <!-- Sol -->
@@ -55,9 +55,9 @@
     <a-entity class="table-chair" position="15 0 0" rotation="0 90 0" scale="70 70 70" gltf-model="url(./src/assets/models/table-chair.glb)"></a-entity>
     <a-entity class="table-chair" position="0 0 10" rotation="0 90 0" scale="70 70 70" gltf-model="url(./src/assets/models/table-chair.glb)"></a-entity>
     <a-entity class="table-chair" position="15 0 10" rotation="0 90 0" scale="70 70 70" gltf-model="url(./src/assets/models/table-chair.glb)"></a-entity>
-    
+
     <!-- Luz Direcional -->
-    <a-light type="directional" position="-3 4 0" target="#sol"></a-light>
+    <a-light type="directional" target="#sol"></a-light>
 
     <!-- Céu -->
     <a-sky src="https://cdn.aframe.io/a-painter/images/sky.jpg"></a-sky>

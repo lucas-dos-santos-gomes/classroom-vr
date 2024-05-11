@@ -29,6 +29,14 @@ AFRAME.registerComponent('moviment', {
     window.addEventListener('keydown', e => crouch(e.key, element, 'down'));
     window.addEventListener('keyup', e => crouch(e.key, element, 'up'));
 
+    // Verificar clique nas letras
+    window.onclick = e => {
+      const letters = document.querySelectorAll('.letters');
+      letters.forEach(letter => {
+        console.log(letter.states);
+      });
+    }
+
     // Pular
     window.addEventListener('keypress', e => {
       if(e.code === 'Space') {
