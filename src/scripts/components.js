@@ -12,7 +12,7 @@ function crouch(key, element, direction) {
         y: direction ==='down' ? (count >= 3 ? count : 3) : (count <= 6 ? count : 6),
         z: element.getAttribute('position').z,
       });
-      direction ==='down' ? (count <= 3 && clearInterval(intervalId)) : (count >= 6 && clearInterval(intervalId));
+      direction === 'down' ? (count <= 3 && clearInterval(intervalId)) : (count >= 6 && clearInterval(intervalId));
     }, 5);
   }
 }
@@ -24,9 +24,31 @@ AFRAME.registerComponent('moviment', {
   },
 
   init: function() {
+    const element = this.el;
     // Agachar / Levantar
-    window.addEventListener('keydown', e => crouch(e.key, this.el, 'down'));
-    window.addEventListener('keyup', e => crouch(e.key, this.el, 'up'));
+    window.addEventListener('keydown', e => crouch(e.key, element, 'down'));
+    window.addEventListener('keyup', e => crouch(e.key, element, 'up'));
+
+    // Pular
+    window.addEventListener('keypress', e => {
+      if(e.code === 'Space') {
+        const position = element.getAttribute('position');
+        const axisY = position.y;
+        let count = axisY;
+        let direction = 'up'
+
+        let intervalId = setInterval(() => {
+          count = direction === 'up' ? count + 0.1 : count - 0.1;
+          if(count >= 10) direction = 'down';
+          element.setAttribute('position', {
+            x: element.getAttribute('position').x,
+            y: direction === 'up' ? (count <= 10 ? count : 10) : (count >= 6 ? count : 6),
+            z: element.getAttribute('position').z,
+          });
+          (count <= 3 && direction === 'down') && clearInterval(intervalId);
+        }, 6);
+      }
+    });
   },
 
   update: function() {
