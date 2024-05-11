@@ -1,3 +1,4 @@
+// Função de agachar (serve para agachar e levantar)
 function crouch(key, element, direction) {
   if(key === 'Shift') {
     const position = element.getAttribute('position');
@@ -16,12 +17,14 @@ function crouch(key, element, direction) {
   }
 }
 
+// Componente/atributo colocado na câmera para ter as funções de movimento
 AFRAME.registerComponent('moviment', {
   schema: {
     
   },
 
-  init: function() {    
+  init: function() {
+    // Agachar / Levantar
     window.addEventListener('keydown', e => crouch(e.key, this.el, 'down'));
     window.addEventListener('keyup', e => crouch(e.key, this.el, 'up'));
   },
