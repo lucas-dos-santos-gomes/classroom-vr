@@ -39,14 +39,19 @@ AFRAME.registerComponent('squat', {
       if(e.key == 'Shift') {
         const element = this.el;
         const position = element.getAttribute('position');
+        const axisY = position.y;
+        let count = axisY;
 
-        element.setAttribute('animation', `property: position; dur: 100; easing: linear; to: ${position.x} ${3} ${position.z}`);
-
-        /*element.setAttribute('position', {
-          x: element.getAttribute('position').x,
-          y: axisY - 3,
-          z: element.getAttribute('position').z,
-        });*/
+        let down = setInterval(() => {
+          count = count - 0.1;
+          element.setAttribute('position', {
+            x: element.getAttribute('position').x,
+            y: count,
+            z: element.getAttribute('position').z,
+          });
+          console.log(count);
+          count <= 3 && clearInterval(down);
+        }, 5);
       }
     });
 
@@ -54,15 +59,19 @@ AFRAME.registerComponent('squat', {
       if(e.key == 'Shift') {
         const element = this.el;
         const position = element.getAttribute('position');
+        const axisY = position.y;
+        let count = axisY;
 
-        element.setAttribute('animation', `property: position; dur: 100; easing: linear; to: ${position.x} ${6} ${position.z}`);
-
-
-        /*element.setAttribute('position', {
-          x: element.getAttribute('position').x,
-          y: axisY + 3,
-          z: element.getAttribute('position').z,
-        });*/
+        let up = setInterval(() => {
+          count = count + 0.1;
+          element.setAttribute('position', {
+            x: element.getAttribute('position').x,
+            y: count <= 6 ? count : 6,
+            z: element.getAttribute('position').z,
+          });
+          console.log(count);
+          count >= 6 && clearInterval(up);
+        }, 5);
       }
     });
   },
