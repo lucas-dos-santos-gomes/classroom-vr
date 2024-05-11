@@ -1,4 +1,4 @@
-function squat(key, element, direction) {
+function crouch(key, element, direction) {
   if(key === 'Shift') {
     const position = element.getAttribute('position');
     const axisY = position.y;
@@ -22,8 +22,8 @@ AFRAME.registerComponent('moviment', {
   },
 
   init: function() {    
-    window.addEventListener('keydown', e => squat(e.key, this.el, 'down'));
-    window.addEventListener('keyup', e => squat(e.key, this.el, 'up'));
+    window.addEventListener('keydown', e => crouch(e.key, this.el, 'down'));
+    window.addEventListener('keyup', e => crouch(e.key, this.el, 'up'));
   },
 
   update: function() {
