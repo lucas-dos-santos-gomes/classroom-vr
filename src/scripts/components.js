@@ -39,13 +39,14 @@ AFRAME.registerComponent('squat', {
       if(e.key == 'Shift') {
         const element = this.el;
         const position = element.getAttribute('position');
-        const axisY = position.y;
 
-        element.setAttribute('position', {
+        element.setAttribute('animation', `property: position; dur: 100; easing: linear; to: ${position.x} ${3} ${position.z}`);
+
+        /*element.setAttribute('position', {
           x: element.getAttribute('position').x,
           y: axisY - 3,
           z: element.getAttribute('position').z,
-        });
+        });*/
       }
     });
 
@@ -53,13 +54,15 @@ AFRAME.registerComponent('squat', {
       if(e.key == 'Shift') {
         const element = this.el;
         const position = element.getAttribute('position');
-        const axisY = position.y;
 
-        element.setAttribute('position', {
+        element.setAttribute('animation', `property: position; dur: 100; easing: linear; to: ${position.x} ${6} ${position.z}`);
+
+
+        /*element.setAttribute('position', {
           x: element.getAttribute('position').x,
           y: axisY + 3,
           z: element.getAttribute('position').z,
-        });
+        });*/
       }
     });
   },
