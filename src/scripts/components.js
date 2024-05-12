@@ -32,9 +32,13 @@ AFRAME.registerComponent('moviment', {
     // Verificar clique nas letras
     window.onclick = e => {
       const letters = document.querySelectorAll('.letters');
+      const blackboard = document.querySelector('#blackboard');
       letters.forEach(letter => {
         console.log(letter.states);
       });
+      if(blackboard.states[0] === 'cursor-hovered') {
+        window.location.pathname = '/src/pages/hard-level.html';
+      }
     }
 
     // Pular

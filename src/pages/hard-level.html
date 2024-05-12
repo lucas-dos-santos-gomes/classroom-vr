@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../scripts/aframe.min.js"></script>
+  <title>Cenário interativo - VR</title>
+  <script src="../scripts/components.js"></script>
+</head>
+<body>
+  <a-scene>
+    <!-- Primeira pessoa -->
+    <a-camera id="camera" position="0 6 10" moviment>
+      <a-cursor id="cursor" position="0 0 -1" geometry="primitive: ring; radiusOuter: 0.015" material="color: black; shader: flat"></a-cursor>
+    </a-camera>
+
+    <!-- Sun -->
+    <a-entity position="0 100 0" a-entity id="sol" scale="5 5 5" gltf-model="url(../assets/models/sun.glb)" light="type: point; intensity: 2;"></a-entity>
+    <a-light type="directional" target="#sol"></a-light>
+
+    <!-- Piso -->
+    <a-plane src="../assets/textures/classroom-floor.jpg" position="0 0.1 0" rotation="-90 0 0" width="50" height="50" color="tan"></a-plane>
+  </a-scene>
+  <script src="../scripts/camera.js"></script>
+  <script src="../scripts/letters-animation.js"></script>
+</body>
