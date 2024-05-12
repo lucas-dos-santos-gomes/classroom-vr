@@ -23,13 +23,19 @@ for(let i = 0; i < 5; i++) {
 
 function randomLetter() {
   const randomPercent = Math.random() * 100;
-  if(randomPercent <= 25) {
+  if(randomPercent <= 14.3) {
     return 'a';
-  } else if(randomPercent <= 50) {
+  } else if(randomPercent <= 28.6) {
     return 'b';
-  } else if(randomPercent <= 75) {
+  } else if(randomPercent <= 42.9) {
     return 'c';
-  } else {
+  } else if(randomPercent <= 57.2) {
+    return 'd';
+  } else if(randomPercent <= 71.4) {
     return 'e';
+  } else if(randomPercent <= 85.7) {
+    return 'f';
+  } else {
+    return 'g';
   }
 };
