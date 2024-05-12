@@ -28,10 +28,19 @@ AFRAME.registerComponent('player-actions', {
     // Verificar clique nas letras
     window.onclick = e => {
       const letters = document.querySelectorAll('.letters');
-      const blackboard = document.querySelector('#blackboard');
       letters.forEach(letter => {
-        console.log(letter.states);
+        if(letter.states[0] === 'cursor-hovered') {
+          let [x, y, z] = letter.getAttribute('position');
+          if(letter.parentEl.id == 'last-letter') {
+            let [x, y, z] = letter.parentEl.getAttribute('position');
+            letter.parentEl.setAttribute('animation', `property: position; loop: false; dur: 2000; easing: linear; from: ${x} ${y} ${z}; to: ${x} ${y+20} ${z}`);
+            return;
+          }
+          letter.setAttribute('animation', `property: position; loop: false; dur: 2000; easing: linear; from: ${x} ${y} ${z}; to: ${x} ${y+20} ${z}`)
+        };
       });
+
+      const blackboard = document.querySelector('#blackboard');
       if(blackboard.states[0] === 'cursor-hovered') {
         window.location.pathname = '/src/pages/hard-level.html';
       }
