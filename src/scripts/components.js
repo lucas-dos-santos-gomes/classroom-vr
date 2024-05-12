@@ -19,10 +19,6 @@ function crouch(key, element, direction) {
 
 // Componente/atributo colocado na câmera para ter as funções de movimento
 AFRAME.registerComponent('moviment', {
-  schema: {
-    
-  },
-
   init: function() {
     const element = this.el;
     // Agachar / Levantar
@@ -61,17 +57,5 @@ AFRAME.registerComponent('moviment', {
         }, 6);
       }
     });
-  },
-
-  update: function() {
-    // Do something when component's data is updated.
-  },
-
-  remove: function() {
-    // Do something the component or its entity is detached.
-  },
-
-  tick: function(time, timeDelta) {
-    // Do something on every scene tick or frame.
   }
 });

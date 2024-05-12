@@ -8,19 +8,32 @@
   <script src="../scripts/components.js"></script>
 </head>
 <body>
-  <a-scene>
+  <a-scene id="vr-screen">
     <!-- Primeira pessoa -->
     <a-camera id="camera" position="0 6 10" moviment>
-      <a-cursor id="cursor" position="0 0 -1" geometry="primitive: ring; radiusOuter: 0.015" material="color: black; shader: flat"></a-cursor>
+      <a-cursor id="cursor" position="0 0 -0.05" geometry="primitive: ring; radiusOuter: 0.0009; radiusInner: 0.0005" material="color: black; shader: flat"></a-cursor>
     </a-camera>
+
+    <a-entity id="classroom" scale="4 4 4" rotation="0 -90 0" position="-16.5 0 12" gltf-model="url(../assets/models/japanese_classroom.glb )"></a-entity>
+
+    <!-- Letra E - Distência entre cadeiras: x = 6.3, z = 6.1 -->
+    <!-- <a-entity class="letters" position="0 4 5" scale="3 3 3" gltf-model="url(../assets/models/letter-E.glb)" animation="property: position; dur: 2000; easing: easeInOutSine; from: 0 4 5; to: 0 5 5" animation__2="property: rotation; loop: true; dur: 3000; easing: linear; from: 0 0 0; to: 0 360 0">
+    </a-entity> -->
 
     <!-- Sun -->
     <a-entity position="0 100 0" a-entity id="sol" scale="5 5 5" gltf-model="url(../assets/models/sun.glb)" light="type: point; intensity: 2;"></a-entity>
-    <a-light type="directional" target="#sol"></a-light>
+    <a-light type="directional" target="#sol" intensity="0.1"></a-light>
+    <a-light type="directional" position="0 5 20" intensity="0.1"></a-light>
+    <a-light type="directional" position="10 1 20" intensity="0.1"></a-light>
+    <a-light type="directional" position="-10 1 20" intensity="0.1"></a-light>
 
     <!-- Piso -->
     <a-plane src="../assets/textures/classroom-floor.jpg" position="0 0.1 0" rotation="-90 0 0" width="50" height="50" color="tan"></a-plane>
+
+    <!-- Céu -->
+    <a-sky color="#89CFF0"></a-sky>
   </a-scene>
   <script src="../scripts/camera.js"></script>
   <script src="../scripts/letters-animation.js"></script>
+  <script src="../scripts/letters-placement.js"></script>
 </body>
