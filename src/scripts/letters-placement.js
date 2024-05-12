@@ -5,7 +5,8 @@ let z = 5;
 for(let i = 0; i < 5; i++) {
   let x = -12.6;
   for(let j = 0; j < 5; j++){
-    const letter = Math.random() < 0.5 ? 'a': 'e';
+    const letter = randomLetter();
+
     let a_entity = document.createElement('a-entity');
     a_entity.setAttribute('class', 'letters');
     a_entity.setAttribute('position', `${x} ${y} ${z}`);
@@ -18,4 +19,17 @@ for(let i = 0; i < 5; i++) {
     x += 6.3;
   }
   z -= 6.6;
+};
+
+function randomLetter() {
+  const randomPercent = Math.random() * 100;
+  if(randomPercent <= 25) {
+    return 'a';
+  } else if(randomPercent <= 50) {
+    return 'b';
+  } else if(randomPercent <= 75) {
+    return 'c';
+  } else {
+    return 'e';
+  }
 };
