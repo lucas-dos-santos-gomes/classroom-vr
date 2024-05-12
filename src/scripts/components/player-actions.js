@@ -18,7 +18,7 @@ function crouch(key, element, direction) {
 }
 
 // Componente/atributo colocado na câmera para ter as funções de movimento
-AFRAME.registerComponent('moviment', {
+AFRAME.registerComponent('player-actions', {
   init: function() {
     const element = this.el;
     // Agachar / Levantar

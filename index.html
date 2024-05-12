@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="./src/scripts/aframe.min.js"></script>
   <title>Cenário interativo - VR</title>
-  <script src="./src/scripts/components.js"></script>
+  <script src="./src/scripts/components/player-actions.js"></script>
 </head>
 <body>
   <a-scene>
     <!-- Primeira pessoa -->
-    <a-camera id="camera" position="0 6 10" moviment>
+    <a-camera id="camera" position="0 6 10" player-actions>
       <a-cursor id="cursor" position="0 0 -0.1" geometry="primitive: ring; radiusOuter: 0.0017; radiusInner: 0.001" material="color: black; shader: flat"></a-cursor>
     </a-camera>
     

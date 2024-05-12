@@ -10,8 +10,9 @@ for(let i = 0; i < 5; i++) {
     a_entity.setAttribute('position', `${x} ${y} ${z}`);
     a_entity.setAttribute('scale', `3 3 3`);
     a_entity.setAttribute('gltf-model', `url(../assets/models/letter-E.glb)`);
-    a_entity.setAttribute('animation', `property: position; dur: 2000; easing: easeInOutSine; from: ${x} ${y} ${z}; to: ${x} ${5} ${z}`);
+    a_entity.setAttribute('animation', `property: position; dur: 2000; easing: easeInOutSine; from: ${x} ${y} ${z}; to: ${x} ${y+1} ${z}`);
     a_entity.setAttribute('animation__2', `property: rotation; loop: true; dur: 3000; easing: linear; from: 0 0 0; to: 0 360 0`);
+    a_entity.setAttribute('letter-animation', 'true');
 
     a_scene.appendChild(a_entity);
     x += 6.3;
