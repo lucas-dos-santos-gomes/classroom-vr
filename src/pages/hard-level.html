@@ -17,9 +17,9 @@
 
     <a-entity id="classroom" scale="4 4 4" rotation="0 -90 0" position="-16.5 0 12" gltf-model="url(../assets/models/japanese_classroom.glb )"></a-entity>
 
-    <!-- Letra E - Distência entre cadeiras: x = 6.3, z = 6.1 -->
-    <!-- <a-entity class="letters" position="0 4 5" scale="3 3 3" gltf-model="url(../assets/models/letter-E.glb)" animation="property: position; dur: 2000; easing: easeInOutSine; from: 0 4 5; to: 0 5 5" animation__2="property: rotation; loop: true; dur: 3000; easing: linear; from: 0 0 0; to: 0 360 0">
-    </a-entity> -->
+    <!-- Letra E escondida -->
+    <a-entity id="last-letter" class="letters" position="0 3 13" scale="1.5 1.5 1.5" gltf-model="url(../assets/models/letter-E.glb)" animation__2="property: rotation; loop: true; dur: 3000; easing: linear; from: 0 0 0; to: 0 360 0" letter-animation>
+    </a-entity>
 
     <!-- Sun -->
     <a-entity position="0 100 0" a-entity id="sol" scale="5 5 5" gltf-model="url(../assets/models/sun.glb)" light="type: point; intensity: 2;"></a-entity>

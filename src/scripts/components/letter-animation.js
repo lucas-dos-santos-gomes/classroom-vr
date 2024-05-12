@@ -2,7 +2,7 @@ AFRAME.registerComponent('letter-animation', {
   init: function() {
     const letter = this.el;
     const [ x, y, z ] = letter.getAttribute('position');
-    const maxY = y + 1;
+    const maxY = y + (letter.getAttribute('scale').x * 0.2);
     
     // Início da animação
     letter.setAttribute('animation', `property: position; dur: 2000; easing: easeInOutSine; from: ${x} ${y} ${z}; to: ${x} ${maxY} ${z}`);
