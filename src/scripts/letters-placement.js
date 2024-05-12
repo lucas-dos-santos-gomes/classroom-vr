@@ -23,19 +23,26 @@ for(let i = 0; i < 5; i++) {
 
 function randomLetter() {
   const randomPercent = Math.random() * 100;
-  if(randomPercent <= 14.3) {
+  const n_of_l = 10;
+  if(randomPercent <= (100 / n_of_l)) {
     return 'a';
-  } else if(randomPercent <= 28.6) {
+  } else if(randomPercent <= ((100 / n_of_l) * 2)) {
     return 'b';
-  } else if(randomPercent <= 42.9) {
+  } else if(randomPercent <= ((100 / n_of_l) * 3)) {
     return 'c';
-  } else if(randomPercent <= 57.2) {
+  } else if(randomPercent <= ((100 / n_of_l) * 4)) {
     return 'd';
-  } else if(randomPercent <= 71.4) {
+  } else if(randomPercent <= ((100 / n_of_l) * 5)) {
     return 'e';
-  } else if(randomPercent <= 85.7) {
+  } else if(randomPercent <= ((100 / n_of_l) * 6)) {
     return 'f';
-  } else {
+  } else if(randomPercent <= ((100 / n_of_l) * 7)) {
     return 'g';
+  } else if(randomPercent <= ((100 / n_of_l) * 8)) {
+    return 'h';
+  } else if(randomPercent <= ((100 / n_of_l) * 9)) {
+    return 'i';
+  } else {
+    return 'j';
   }
 };
