@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="/src/assets/imgs/pencil-icon.png" type="image/x-icon">
   <script src="../scripts/aframe.min.js"></script>
   <title>Cenário interativo - VR</title>
   <script src="../scripts/components/player-actions.js"></script>
@@ -17,9 +18,9 @@
 
     <a-entity id="classroom" scale="4 4 4" rotation="0 -90 0" position="-16.5 0 12" gltf-model="url(../assets/models/japanese_classroom.glb )"></a-entity>
 
-    <!-- Letra A escondida -->
+    <!-- Última letra escondida -->
     <a-entity id="last-letter" position="0 3 13" animation="property: rotation; loop: true; dur: 3000; easing: linear; from: 0 0 0; to: 0 360 0">
-      <a-entity class="letters" position="0 0 0" scale="1.5 1.5 1.5" gltf-model="url(../assets/models/letter-j.glb)">
+      <a-entity class="letters" position="0 0 0" scale="1.5 1.5 1.5" gltf-model="url(../assets/models/letter-m.glb)">
       </a-entity>
       <a-entity id="crown" position="0 0.4 0" scale="0.5 0.5 0.5" gltf-model="url(../assets/models/crown.glb)">
       </a-entity>
