@@ -1,8 +1,9 @@
 const a_scene = document.querySelector('#vr-screen');
 const y = 4.2;
 let z = 5;
-const alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n',/*'o','p','q','r','s','t','u','w','x','y','z'*/];
+const alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p',/*'q','r','s','t','u','w','x','y','z'*/];
 
+// Criando letras e posicionando em cima das mesas
 for(let i = 0; i < 5; i++) {
   let x = -12.6;
   for(let j = 0; j < 5; j++){
@@ -22,34 +23,13 @@ for(let i = 0; i < 5; i++) {
   z -= 6.6;
 };
 
+// Escolha aleatória de letras
 function randomLetter(letters) {
   const randomPercent = Math.random() * 100;
   const n_of_l = letters.length;
-  if(randomPercent <= (100 / n_of_l)) {
-    return letters[0];
-  } else if(randomPercent <= ((100 / n_of_l) * 2)) {
-    return letters[1];
-  } else if(randomPercent <= ((100 / n_of_l) * 3)) {
-    return letters[2];
-  } else if(randomPercent <= ((100 / n_of_l) * 4)) {
-    return letters[3];
-  } else if(randomPercent <= ((100 / n_of_l) * 5)) {
-    return letters[4];
-  } else if(randomPercent <= ((100 / n_of_l) * 6)) {
-    return letters[5];
-  } else if(randomPercent <= ((100 / n_of_l) * 7)) {
-    return letters[6];
-  } else if(randomPercent <= ((100 / n_of_l) * 8)) {
-    return letters[7];
-  } else if(randomPercent <= ((100 / n_of_l) * 9)) {
-    return letters[8];
-  } else if(randomPercent <= ((100 / n_of_l) * 10)) {
-    return letters[9];
-  } else if(randomPercent <= ((100 / n_of_l) * 11)) {
-    return letters[10];
-  } else if(randomPercent <= ((100 / n_of_l) * 12)) {
-    return letters[11];
-  } else {
-    return letters[12];
+  for(let i = 0; i <= n_of_l; i++) {
+    if(randomPercent <= ((100 / n_of_l) * (i + 1))) {
+      return letters[i];
+    }
   }
 };
