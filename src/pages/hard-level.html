@@ -12,11 +12,12 @@
 <body>
   <a-scene id="vr-screen" loading-screen="dotsColor: red; backgroundColor: black">
     <!-- Primeira pessoa -->
-    <a-camera id="camera" player-actions >
+    <a-camera id="camera" player-actions>
       <a-cursor id="cursor" position="0 0 -0.05" geometry="primitive: ring; radiusOuter: 0.0009; radiusInner: 0.0005" material="color: black; shader: flat"></a-cursor>
     </a-camera>
 
-    <a-entity id="classroom" scale="4 4 4" rotation="0 -90 0" position="-16.5 0 12" gltf-model="url(../assets/models/japanese_classroom.glb )"></a-entity>
+    <!-- Sala de Aula -->
+    <a-entity id="classroom" scale="1.2 1.2 1.2" gltf-model="url(../assets/models/japanese_classroom.glb )"></a-entity>
 
     <!-- Última letra escondida -->
     <a-entity id="last-letter" position="0 3 13" animation="property: rotation; loop: true; dur: 3000; easing: linear; from: 0 0 0; to: 0 360 0">
@@ -26,7 +27,7 @@
       </a-entity>
     </a-entity>
 
-    <!-- Sun -->
+    <!-- Lights -->
     <a-entity position="0 100 0" a-entity id="sol" scale="5 5 5" gltf-model="url(../assets/models/sun.glb)" light="type: point; intensity: 2;"></a-entity>
     <a-light type="directional" target="#sol" intensity="0.1"></a-light>
     <a-light type="directional" position="0 5 20" intensity="0.1"></a-light>
@@ -40,5 +41,5 @@
     <a-sky color="#89CFF0"></a-sky>
   </a-scene>
   <script src="../scripts/camera.js"></script>
-  <script src="../scripts/letters-placement.js"></script>
+  <!-- <script src="../scripts/letters-placement.js"></script> -->
 </body>
