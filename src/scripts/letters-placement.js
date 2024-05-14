@@ -1,26 +1,27 @@
 const a_scene = document.querySelector('#vr-screen');
-const y = 4.2;
-let z = 5;
 const alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+const y = 1.3;
+let x = -9.2;
 
 // Criando letras e posicionando em cima das mesas
 for(let i = 0; i < 5; i++) {
-  let x = -12.6;
+  let z = -1.05;
   for(let j = 0; j < 5; j++){
     const letter = randomLetter(alphabet);
 
     let a_entity = document.createElement('a-entity');
     a_entity.setAttribute('class', 'letters');
     a_entity.setAttribute('position', `${x} ${y} ${z}`);
-    a_entity.setAttribute('scale', `3 3 3`);
+    a_entity.setAttribute('scale', `0.8 0.8 0.8`);
+    a_entity.setAttribute('rotation', `0 90 0`);
     a_entity.setAttribute('gltf-model', `url(../assets/models/letter-${letter}.glb)`);
     a_entity.setAttribute('animation__2', `property: rotation; loop: true; dur: 3000; easing: linear; from: 0 0 0; to: 0 360 0`);
     a_entity.setAttribute('letter-animation', 'true');
 
     a_scene.appendChild(a_entity);
-    x += 6.3;
+    z -= 1.74 ;
   }
-  z -= 6.6;
+  x += 1.83;
 };
 
 // Escolha aleatória de letras

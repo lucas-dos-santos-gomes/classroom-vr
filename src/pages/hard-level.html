@@ -17,13 +17,13 @@
     </a-camera>
 
     <!-- Sala de Aula -->
-    <a-entity id="classroom" scale="1.2 1.2 1.2" gltf-model="url(../assets/models/japanese_classroom.glb )"></a-entity>
+    <a-entity id="classroom" scale="1.1 1.1 1.1" gltf-model="url(../assets/models/japanese_classroom.glb )"></a-entity>
 
     <!-- Última letra escondida -->
-    <a-entity id="last-letter" position="0 3 13" animation="property: rotation; loop: true; dur: 3000; easing: linear; from: 0 0 0; to: 0 360 0">
-      <a-entity class="letters" position="0 0 0" scale="1.5 1.5 1.5" gltf-model="url(../assets/models/letter-z.glb)">
+    <a-entity id="last-letter" rotation="0 90 0" position="0.2 0.8 -4.55" animation="property: rotation; loop: true; dur: 3000; easing: linear; from: 0 0 0; to: 0 360 0">
+      <a-entity class="letters" position="0 0 0" scale="0.5 0.5 0.5" gltf-model="url(../assets/models/letter-z.glb)">
       </a-entity>
-      <a-entity id="crown" position="0 0.4 0" scale="0.5 0.5 0.5" gltf-model="url(../assets/models/crown.glb)">
+      <a-entity id="crown" position="0 0.12 0" scale="0.2 0.2 0.2" gltf-model="url(../assets/models/crown.glb)">
       </a-entity>
     </a-entity>
 
@@ -41,5 +41,5 @@
     <a-sky color="#89CFF0"></a-sky>
   </a-scene>
   <script src="../scripts/camera.js"></script>
-  <!-- <script src="../scripts/letters-placement.js"></script> -->
+  <script src="../scripts/letters-placement.js"></script>
 </body>
