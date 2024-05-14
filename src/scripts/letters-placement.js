@@ -1,7 +1,7 @@
 const a_scene = document.querySelector('#vr-screen');
 const y = 4.2;
 let z = 5;
-const alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p',/*'q','r','s','t','u','w','x','y','z'*/];
+const alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 
 // Criando letras e posicionando em cima das mesas
 for(let i = 0; i < 5; i++) {
