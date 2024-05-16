@@ -1,7 +1,11 @@
+sessionStorage.setItem('name','Lucas');
+
 const a_scene = document.querySelector('#vr-screen');
 const alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 const y = 1.3;
 let x = -9.2;
+
+getName(sessionStorage.getItem('name'));
 
 // Criando letras e posicionando em cima das mesas
 for(let i = 0; i < 5; i++) {
@@ -34,3 +38,9 @@ function randomLetter(letters) {
     }
   }
 };
+
+function getName(name) {
+  const letters_of_name = name.split('');
+  console.log(Math.round(Math.random() * 4));
+  console.log(Math.round(Math.random() * 4));
+}
