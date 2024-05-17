@@ -9,11 +9,11 @@ function crouch(key, element, direction) {
       count = (direction === 'down' ? (count - 0.1) : (count + 0.1));
       element.setAttribute('position', {
         x: element.getAttribute('position').x,
-        y: direction ==='down' ? (count >= 0.5 ? count : 0.5) : (count <= 1.6 ? count : 1.6),
+        y: direction ==='down' ? (count >= 0.8 ? count : 0.8) : (count <= 1.6 ? count : 1.6),
         z: element.getAttribute('position').z,
       });
-      direction === 'down' ? (count <= 0.5 && clearInterval(intervalId)) : (count >= 1.6 && clearInterval(intervalId));
-    }, 10);
+      direction === 'down' ? (count <= 0.8 && clearInterval(intervalId)) : (count >= 1.6 && clearInterval(intervalId));
+    }, 18);
   }
 }
 
