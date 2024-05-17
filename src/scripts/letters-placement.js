@@ -41,6 +41,20 @@ function randomLetter(letters) {
 
 function getName(name) {
   const letters_of_name = name.split('');
-  console.log(Math.round(Math.random() * 4));
-  console.log(Math.round(Math.random() * 4));
+  let letters_position = {};
+  letters_of_name.forEach((letter, index) => {
+    letters_position[letter] = [Math.round(Math.random() * 4), Math.round(Math.random() * 4)];
+    if(index > 0) {
+      for(const teste in letters_position) {
+        console.log(teste);
+        console.log(letters_position[letter]);
+        console.log(letters_position[teste]);
+        console.log(letters_position[letter] == letters_position[teste]);
+      }
+    }
+  });
+  console.log(letters_position);
+  // console.log(letters_of_name);
+  // console.log(Math.round(Math.random() * 4));
+  // console.log(Math.round(Math.random() * 4));
 }
