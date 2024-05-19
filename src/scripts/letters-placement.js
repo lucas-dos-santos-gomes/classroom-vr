@@ -1,21 +1,29 @@
 sessionStorage.setItem('name','Lucas');
 
 const A_SCENE = document.querySelector('#vr-screen');
-const ALPHABET = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 const y = 1.3;
 let x = -9.2;
+const NAME = sessionStorage.getItem('name') ?? 'Lucas';
 let letters_of_name_position = {};
 
 // Confere se dois arrays são iguais
 const checkArrays = (a1, a2) => JSON.stringify(a1) === JSON.stringify(a2);
 
-getName(sessionStorage.getItem('name'), letters_of_name_position);
+letters_of_name_position = getName(NAME, letters_of_name_position);
 
 // Criando letras e posicionando em cima das mesas
 for(let i = 0; i < 5; i++) {
   let z = -1.05;
-  for(let j = 0; j < 5; j++){
-    const letter = randomLetter(ALPHABET);
+  for(let j = 0; j < 5; j++) {
+    let letter = false;
+    let chooseLetterName = false;
+    for(const each_letter_name in letters_of_name_position) {
+      alphabet = alphabet.filter(l => l != each_letter_name);
+      chooseLetterName = checkArrays([i, j], letters_of_name_position[each_letter_name]);
+      if(chooseLetterName) letter = each_letter_name;
+    }
+    letter = letter || randomLetter(alphabet);
 
     const A_ENTITY = document.createElement('a-entity');
     A_ENTITY.setAttribute('class', 'letters');
@@ -62,5 +70,5 @@ function getName(name, letters_of_name_position) {
       }
     }
   });
-  console.log(letters_of_name_position);
+  return letters_of_name_position;
 }
