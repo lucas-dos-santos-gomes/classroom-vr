@@ -1,4 +1,4 @@
-sessionStorage.setItem('name','Lucas');
+sessionStorage.setItem('name','João Felipe');
 
 const A_SCENE = document.querySelector('#vr-screen');
 var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
@@ -53,7 +53,8 @@ function randomLetter(letters) {
 
 // Divide as letras do nome nas posições da sala
 function getName(name, letters_of_name_position) {
-  const letters_of_name = name.toLowerCase().split('');
+  const letters_of_name = name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").split('').filter(letter => letter != ' ');
+  console.log(letters_of_name);
   letters_of_name.forEach((letter, index) => {
     if(letters_of_name_position[letter] === undefined) {
       letters_of_name_position[letter] = [Math.round(Math.random() * 4), Math.round(Math.random() * 4)];
