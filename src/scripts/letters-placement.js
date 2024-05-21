@@ -1,4 +1,4 @@
-sessionStorage.setItem('name','Joao Felipe');
+sessionStorage.setItem('name','João Felipe');
 
 const A_SCENE = document.querySelector('#vr-screen');
 var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
@@ -34,6 +34,7 @@ for(let i = 0; i < 5; i++) {
     A_ENTITY.setAttribute('gltf-model', `url(../assets/models/letter-${letter}.glb)`);
     A_ENTITY.setAttribute('animation__2', `property: rotation; loop: true; dur: 3000; easing: linear; from: 0 0 0; to: 0 360 0`);
     A_ENTITY.setAttribute('letter-animation', 'true');
+    A_ENTITY.setAttribute('data-letter', letter);
 
     A_SCENE.appendChild(A_ENTITY);
     z -= 1.74 ;

@@ -25,21 +25,8 @@ AFRAME.registerComponent('player-actions', {
     window.addEventListener('keydown', e => crouch(e.key, element, 'down'));
     window.addEventListener('keyup', e => crouch(e.key, element, 'up'));
 
-    // Verificar clique nas letras
+    // Verificar clique na lousa
     window.onclick = () => {
-      // const letters = document.querySelectorAll('.letters');
-      // letters.forEach(letter => {
-      //   if(letter.states[0] === 'cursor-hovered') {
-      //     let [x, y, z] = letter.getAttribute('position');
-      //     if(letter.parentEl.id == 'last-letter') {
-      //       let [x, y, z] = letter.parentEl.getAttribute('position');
-      //       letter.parentEl.setAttribute('animation', `property: position; loop: false; dur: 2000; easing: linear; from: ${x} ${y} ${z}; to: ${x} ${y+20} ${z}`);
-      //       return;
-      //     }
-      //     letter.setAttribute('animation', `property: position; loop: false; dur: 2000; easing: linear; from: ${x} ${y} ${z}; to: ${x} ${y+20} ${z}`)
-      //   };
-      // });
-
       const blackboard = document.querySelector('#blackboard');
       if(blackboard.states[0] === 'cursor-hovered') {
         window.location.pathname = '/src/pages/hard-level.html';
@@ -56,14 +43,14 @@ AFRAME.registerComponent('player-actions', {
 
         let intervalId = setInterval(() => {
           count = direction === 'up' ? count + 0.1 : count - 0.1;
-          if(count >= 10) direction = 'down';
+          if(count >= 3) direction = 'down';
           element.setAttribute('position', {
             x: element.getAttribute('position').x,
-            y: direction === 'up' ? (count <= 10 ? count : 10) : (count >= 6 ? count : 6),
+            y: direction === 'up' ? (count <= 3 ? count : 3) : (count >= 1.6 ? count : 1.6),
             z: element.getAttribute('position').z,
           });
-          (count <= 3 && direction === 'down') && clearInterval(intervalId);
-        }, 8);
+          (count <= 1.6 && direction === 'down') && clearInterval(intervalId);
+        }, 15);
       }
     });
   }
