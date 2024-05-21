@@ -50,32 +50,6 @@ function randomLetter(letters) {
   }
 };
 
-/*
-// Divide as letras do nome nas posições da sala
-function getName(name, letters_of_name_position) {
-  // Deixa o nome minúsculo, sem espaço e sem caracteres especiais
-  const letters_of_name = name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").split('').filter(letter => letter != ' ');
-  console.log(letters_of_name.map(e => [e, [Math.round(Math.random() * 4), Math.round(Math.random() * 4)]]));
-  letters_of_name.forEach((letter, index) => {
-    if(letters_of_name_position[letter] === undefined) {
-      letters_of_name_position[letter] = [Math.round(Math.random() * 4), Math.round(Math.random() * 4)];
-      
-      if(index > 0) {
-        for(const each_letter_name in letters_of_name_position) {
-          if(!(letters_of_name_position[letter] === letters_of_name_position[each_letter_name])) {
-            if(checkArrays(letters_of_name_position[letter], letters_of_name_position[each_letter_name])) {
-              delete letters_of_name_position[each_letter_name];
-              return getName(name, letters_of_name_position);
-            }
-          }
-        }
-      }
-    }
-  });
-  console.log(letters_of_name_position);
-  return letters_of_name_position;
-}*/
-
 // Divide as letras do nome nas posições da sala
 function getName(name, letters_of_name_position) {
   // Deixa o nome minúsculo, sem espaço e sem caracteres especiais
