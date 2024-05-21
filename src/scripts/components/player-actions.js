@@ -26,19 +26,19 @@ AFRAME.registerComponent('player-actions', {
     window.addEventListener('keyup', e => crouch(e.key, element, 'up'));
 
     // Verificar clique nas letras
-    window.onclick = e => {
-      const letters = document.querySelectorAll('.letters');
-      letters.forEach(letter => {
-        if(letter.states[0] === 'cursor-hovered') {
-          let [x, y, z] = letter.getAttribute('position');
-          if(letter.parentEl.id == 'last-letter') {
-            let [x, y, z] = letter.parentEl.getAttribute('position');
-            letter.parentEl.setAttribute('animation', `property: position; loop: false; dur: 2000; easing: linear; from: ${x} ${y} ${z}; to: ${x} ${y+20} ${z}`);
-            return;
-          }
-          letter.setAttribute('animation', `property: position; loop: false; dur: 2000; easing: linear; from: ${x} ${y} ${z}; to: ${x} ${y+20} ${z}`)
-        };
-      });
+    window.onclick = () => {
+      // const letters = document.querySelectorAll('.letters');
+      // letters.forEach(letter => {
+      //   if(letter.states[0] === 'cursor-hovered') {
+      //     let [x, y, z] = letter.getAttribute('position');
+      //     if(letter.parentEl.id == 'last-letter') {
+      //       let [x, y, z] = letter.parentEl.getAttribute('position');
+      //       letter.parentEl.setAttribute('animation', `property: position; loop: false; dur: 2000; easing: linear; from: ${x} ${y} ${z}; to: ${x} ${y+20} ${z}`);
+      //       return;
+      //     }
+      //     letter.setAttribute('animation', `property: position; loop: false; dur: 2000; easing: linear; from: ${x} ${y} ${z}; to: ${x} ${y+20} ${z}`)
+      //   };
+      // });
 
       const blackboard = document.querySelector('#blackboard');
       if(blackboard.states[0] === 'cursor-hovered') {
