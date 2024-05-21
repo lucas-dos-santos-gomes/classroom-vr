@@ -1,4 +1,4 @@
-sessionStorage.setItem('name','João Felipe');
+sessionStorage.setItem('name','Joao Felipe');
 
 const A_SCENE = document.querySelector('#vr-screen');
 var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
@@ -22,8 +22,7 @@ for(let i = 0; i < 5; i++) {
     for(const EACH_NAME_LETTER_AND_POSITION of NAME_LETTERS_AND_POSITIONS) {
       alphabet = alphabet.filter(l => l != EACH_NAME_LETTER_AND_POSITION[0]);
       chooseLetterName = checkArrays([i, j], EACH_NAME_LETTER_AND_POSITION[1]);
-      // Verifica se a posição atual é posição de alguma das letras e se não é a última letra do nome
-      letter = (chooseLetterName && NAME_LETTERS_AND_POSITIONS.indexOf(EACH_NAME_LETTER_AND_POSITION) != NAME_LETTERS_AND_POSITIONS.length - 1) && EACH_NAME_LETTER_AND_POSITION[0];
+      if(chooseLetterName && NAME_LETTERS_AND_POSITIONS.indexOf(EACH_NAME_LETTER_AND_POSITION) != NAME_LETTERS_AND_POSITIONS.length - 1) letter = EACH_NAME_LETTER_AND_POSITION[0];
     }
     letter = letter || randomLetter(alphabet);
 
