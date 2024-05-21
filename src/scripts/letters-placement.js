@@ -5,12 +5,11 @@ var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p',
 const y = 1.3;
 let x = -9.2;
 const NAME = sessionStorage.getItem('name') ?? 'Lucas';
-let letters_of_name_position = {};
 
 // Confere se dois arrays são iguais
 const checkArrays = (a1, a2) => JSON.stringify(a1) === JSON.stringify(a2);
 
-letters_of_name_position = getName(NAME, letters_of_name_position);
+const NAME_LETTERS_AND_POSITIONS = getName(NAME, []);
 
 // Criando letras e posicionando em cima das mesas
 for(let i = 0; i < 5; i++) {
@@ -18,10 +17,10 @@ for(let i = 0; i < 5; i++) {
   for(let j = 0; j < 5; j++) {
     let letter = false;
     let chooseLetterName = false;
-    for(const each_letter_name in letters_of_name_position) {
-      alphabet = alphabet.filter(l => l != each_letter_name);
-      chooseLetterName = checkArrays([i, j], letters_of_name_position[each_letter_name]);
-      if(chooseLetterName) letter = each_letter_name;
+    for(const EACH_NAME_LETTER_AND_POSITION of NAME_LETTERS_AND_POSITIONS) {
+      alphabet = alphabet.filter(l => l != EACH_NAME_LETTER_AND_POSITION[0]);
+      chooseLetterName = checkArrays([i, j], EACH_NAME_LETTER_AND_POSITION[1]);
+      if(chooseLetterName) letter = EACH_NAME_LETTER_AND_POSITION[0];
     }
     letter = letter || randomLetter(alphabet);
 
@@ -51,10 +50,12 @@ function randomLetter(letters) {
   }
 };
 
+/*
 // Divide as letras do nome nas posições da sala
 function getName(name, letters_of_name_position) {
+  // Deixa o nome minúsculo, sem espaço e sem caracteres especiais
   const letters_of_name = name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").split('').filter(letter => letter != ' ');
-  console.log(letters_of_name);
+  console.log(letters_of_name.map(e => [e, [Math.round(Math.random() * 4), Math.round(Math.random() * 4)]]));
   letters_of_name.forEach((letter, index) => {
     if(letters_of_name_position[letter] === undefined) {
       letters_of_name_position[letter] = [Math.round(Math.random() * 4), Math.round(Math.random() * 4)];
@@ -64,6 +65,30 @@ function getName(name, letters_of_name_position) {
           if(!(letters_of_name_position[letter] === letters_of_name_position[each_letter_name])) {
             if(checkArrays(letters_of_name_position[letter], letters_of_name_position[each_letter_name])) {
               delete letters_of_name_position[each_letter_name];
+              return getName(name, letters_of_name_position);
+            }
+          }
+        }
+      }
+    }
+  });
+  console.log(letters_of_name_position);
+  return letters_of_name_position;
+}*/
+
+// Divide as letras do nome nas posições da sala
+function getName(name, letters_of_name_position) {
+  // Deixa o nome minúsculo, sem espaço e sem caracteres especiais
+  const NAME_LETTERS = name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").split('').filter(letter => letter != ' ');
+  NAME_LETTERS.forEach((letter, index) => {
+    if(letters_of_name_position[index] === undefined) {
+      letters_of_name_position[index] = [letter, [Math.round(Math.random() * 4), Math.round(Math.random() * 4)]];
+      
+      if(index > 0) {
+        for(const EACH_NAME_LETTER_AND_POSITION of letters_of_name_position) {
+          if(!(letters_of_name_position[index][1] === EACH_NAME_LETTER_AND_POSITION[1])) {
+            if(checkArrays(letters_of_name_position[index][1], EACH_NAME_LETTER_AND_POSITION[1])) {
+              letters_of_name_position.pop();
               return getName(name, letters_of_name_position);
             }
           }
