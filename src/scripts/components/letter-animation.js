@@ -35,9 +35,45 @@ AFRAME.registerComponent('letter-animation', {
               letter.parentEl.removeChild(letter);
             }, 500);
             splitName.shift();
+            splitName.length === 1 && hiddenLastLetter(splitName);
           };
         });
       }
     }, 2000);
   }
 });
+
+// Última letra escondida
+function hiddenLastLetter(splitName) {
+  const A_SCENE = document.querySelector('#vr-screen');
+  const A_ENTITY = document.createElement('a-entity');
+  const A_LETTER = document.createElement('a-entity');
+  const A_CROWN = document.createElement('a-entity');
+
+  A_ENTITY.setAttribute('id', 'last-letter');
+  A_ENTITY.setAttribute('position', '0.2 0.83 -4.55');
+  A_ENTITY.setAttribute('animation', 'property: rotation; loop: true; dur: 3000; easing: linear; from: 0 0 0; to: 0 360 0');
+  A_ENTITY.setAttribute('data-letter', splitName[0]);
+
+  A_LETTER.setAttribute('class', 'letters');
+  A_LETTER.setAttribute('position', '0 0 0');
+  A_LETTER.setAttribute('scale', '0.5 0.5 0.5');
+  A_LETTER.setAttribute('gltf-model', `url(../assets/models/letter-${splitName[0]}.glb)`);
+
+  A_CROWN.setAttribute('id', 'crown');
+  A_CROWN.setAttribute('position', '0 0.12 0');
+  A_CROWN.setAttribute('scale', '0.2 0.2 0.2');
+  A_CROWN.setAttribute('gltf-model', 'url(../assets/models/crown.glb)');
+
+  A_ENTITY.appendChild(A_LETTER);
+  A_ENTITY.appendChild(A_CROWN);
+  A_SCENE.appendChild(A_ENTITY);
+}
+
+// Última letra escondida
+// <a-entity id="last-letter" rotation="0 90 0" position="0.2 0.83 -4.55" animation="property: rotation; loop: true; dur: 3000; easing: linear; from: 0 0 0; to: 0 360 0">
+//   <a-entity class="letters" position="0 0 0" scale="0.5 0.5 0.5" gltf-model="url(../assets/models/letter-z.glb)">
+//   </a-entity>
+//   <a-entity id="crown" position="0 0.12 0" scale="0.2 0.2 0.2" gltf-model="url(../assets/models/crown.glb)">
+//   </a-entity>
+// </a-entity>

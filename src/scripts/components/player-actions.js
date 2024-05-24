@@ -29,7 +29,7 @@ AFRAME.registerComponent('player-actions', {
     window.onclick = () => {
       const blackboard = document.querySelector('#blackboard');
       if(blackboard.states[0] === 'cursor-hovered') {
-        window.location.pathname = '/src/pages/hard-level.html';
+        window.location.pathname = '/src/pages/classroom.html';
       }
     }
 

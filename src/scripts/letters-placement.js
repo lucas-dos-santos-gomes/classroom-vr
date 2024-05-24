@@ -1,6 +1,4 @@
-sessionStorage.setItem('name','Carlos');
-sessionStorage.setItem('array', [2, 3, 5]);
-console.log(sessionStorage.getItem('array'));
+sessionStorage.setItem('name','Lucas');
 
 const A_SCENE = document.querySelector('#vr-screen');
 var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
