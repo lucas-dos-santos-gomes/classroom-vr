@@ -11,7 +11,7 @@ AFRAME.registerComponent('letter-animation', {
     let up = true;
 
     // Loop de animação
-    const animationLoop = (e) => {
+    const animationLoop = () => {
       let animation = `property: position; dur: 2000; easing: easeInOutSine; from: ${x} ${up?maxY:y} ${z}; to: ${x} ${up?y:maxY} ${z}`;
       up = !up;
       letterEl.setAttribute('animation', animation);
