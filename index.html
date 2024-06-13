@@ -3,69 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="./src/scripts/lib/aframe.min.js"></script>
+  <link rel="shortcut icon" href="/src/assets/imgs/pencil-icon.png" type="image/x-icon">
+  <link rel="stylesheet" href="./src/styles/reset.css">
+  <link rel="stylesheet" href="./src/styles/index.css">
   <title>Cenário interativo - VR</title>
-  <script src="./src/scripts/components/player-actions.js"></script>
 </head>
 <body>
-  <a-scene loading-screen="dotsColor: red; backgroundColor: black">
-    <!-- Primeira pessoa -->
-    <a-camera id="camera" position="0 6 10" player-actions>
-      <a-cursor id="cursor" position="0 0 -0.1" geometry="primitive: ring; radiusOuter: 0.0017; radiusInner: 0.001" material="color: black; shader: flat"></a-cursor>
-    </a-camera>
-    
-    <!-- Sol -->
-    <a-entity position="100 100 -20" a-entity id="sol" scale="5 5 5" gltf-model="url(./src/assets/models/sun.glb)" light="type: point; intensity: 2;"></a-entity>
-
-    <!-- Terra -->
-    <a-entity id="terra" scale="0.7 0.7 0.7" gltf-model="url(./src/assets/models/earth.glb)" position="-25 20 -50" animation="property: rotation; loop: true; dur: 3000; easing: linear; from: 0 0 0; to: 0 360 0">
-      <a-animation attribute="rotation" to="0 360 0" repeat="indefinite" dur="2000" easing="linear"></a-animation>
-    </a-entity>
-
-    <!-- Piso -->
-    <a-plane src="./src/assets/textures/classroom-floor.jpg" position="0 0.1 0" rotation="-90 0 0" width="50" height="50" color="tan"></a-plane>
-
-    <!-- Mar -->
-    <a-plane position="0 0 0" rotation="-90 0 0" width="100" height="100" color="blue"></a-plane>
-    
-    <!-- Arvore -->
-    <a-entity position="-10 0 -20">
-      <a-cylinder radius="1" height="10" color="brown"></a-cylinder>
-      <a-cone src="./src/assets/textures/three-leaves.webp" position="0 10 0" radius-bottom="5" radius-top="1" height="10" color="green"></a-cone>
-    </a-entity>
-    
-    <!-- Letra E -->
-    <a-entity id="letter-e" class="letters" position="10 5.2 -20" scale="10 10 10" gltf-model="url(./src/assets/models/letter-E.glb)" animation="property: position; dur: 2000; easing: easeInOutSine; from: 10 5 -20; to: 10 6 -20">
-    </a-entity>
-    
-    <a-entity position="15 5.2 10" scale="3 3 3" gltf-model="url(./src/assets/models/letter-E.glb)" animation="property: rotation; loop: true; dur: 3000; easing: linear; from: 0 0 0; to: 0 360 0">
-    </a-entity>
-
-    <a-entity class="letters" position="15 5.2 0" scale="3 3 3" gltf-model="url(./src/assets/models/letter-E.glb)" animation="property: position; dur: 2000; easing: easeInOutSine; from: 15 5.2 0; to: 15 6.2 0" animation__2="property: rotation; loop: true; dur: 3000; easing: linear; from: 0 0 0; to: 0 360 0">
-    </a-entity>
-    
-    <!-- Lousa / Quadro negro -->
-    <a-entity id="blackboard" position="-25 5.3 5" rotation="0 90 0" scale="25 25 25" gltf-model="url(./src/assets/models/blackboard.glb)"></a-entity>
-
-    <!-- Giz de cera -->
-    <a-plane position="-18.5 7 5" height="2" width="0.5" rotation="0 90 0"></a-plane>
-
-    <!-- Cadeira e mesa / Secretária -->
-    <a-entity class="table-chair" position="0 0 0" rotation="0 90 0" scale="70 70 70" gltf-model="url(./src/assets/models/table-chair.glb)"></a-entity>
-    <a-entity class="table-chair" position="15 0 0" rotation="0 90 0" scale="70 70 70" gltf-model="url(./src/assets/models/table-chair.glb)"></a-entity>
-    <a-entity class="table-chair" position="0 0 10" rotation="0 90 0" scale="70 70 70" gltf-model="url(./src/assets/models/table-chair.glb)"></a-entity>
-    <a-entity class="table-chair" position="15 0 10" rotation="0 90 0" scale="70 70 70" gltf-model="url(./src/assets/models/table-chair.glb)"></a-entity>
-
-    <!-- Luz Direcional -->
-    <a-light type="directional" target="#sol"></a-light>
-
-    <!-- Céu -->
-    <a-sky src="https://cdn.aframe.io/a-painter/images/sky.jpg"></a-sky>
-
-    <!-- Blocos com a palavra "FELIPE" -->
-    <a-text value="BEM VINDO AO MEU ESPAÇO VIRTUAL - LUCAS" color="black" position="-4 1.5 -10" scale="2 2 2"></a-text>
-  </a-scene>
-  <script src="./src/scripts/camera.js"></script>
-  <script src="./src/scripts/letters-animation.js"></script>
+  <main>
+    <div class="glass-container">
+      <form>
+        <h1>Sala de Aula Virtual</h1>
+        <div class="input-container">
+          <input type="text" id="input" placeholder="Máx. 25 caracteres" maxlength="25" required>
+          <label for="input" class="label">Insira seu nome</label>
+          <div class="underline"></div>
+        </div>
+        <button class="sigin">Entrar na sala</button>
+      </form>
+    </div>
+  </main>
 </body>
 </html>

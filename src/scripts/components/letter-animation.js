@@ -53,12 +53,12 @@ function hiddenLastLetter(splitName) {
   A_ENTITY.setAttribute('id', 'last-letter');
   A_ENTITY.setAttribute('position', '0.2 0.83 -4.55');
   A_ENTITY.setAttribute('animation', 'property: rotation; loop: true; dur: 3000; easing: linear; from: 0 0 0; to: 0 360 0');
-  A_ENTITY.setAttribute('data-letter', splitName[0]);
-
+  
   A_LETTER.setAttribute('class', 'letters');
   A_LETTER.setAttribute('position', '0 0 0');
   A_LETTER.setAttribute('scale', '0.5 0.5 0.5');
   A_LETTER.setAttribute('gltf-model', `url(../assets/models/letter-${splitName[0]}.glb)`);
+  A_LETTER.setAttribute('data-letter', splitName[0]);
 
   A_CROWN.setAttribute('id', 'crown');
   A_CROWN.setAttribute('position', '0 0.12 0');

@@ -1,0 +1,95 @@
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-image: url(/src/assets/imgs/galaxy.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.glass-container {
+  width: min(50vw, 600px);
+  height: clamp(10px, 90%, 350px);
+  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  padding: 30px 15px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+form > h1 {
+  text-align: center;
+  font-size: 3.5rem;
+  color: #FFF;
+}
+
+/* Input */
+.input-container {
+  position: relative;
+  margin: 0 auto 30px;
+  width: 90%;
+}
+
+.input-container input[type="text"] {
+  font-size: 2rem;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  color: #FFF;
+  padding: 5px 0;
+  background-color: transparent;
+  outline: none;
+}
+
+.input-container .label {
+  font-size: 1.6rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #ccc;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.input-container input[type="text"]:focus ~ .label,
+.input-container input[type="text"]:valid ~ .label {
+  top: -25px;
+  font-size: 2rem;
+  color: #7d13ee;
+}
+
+.input-container .underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: #7d13ee;
+  transform: scaleX(0);
+  transition: all 0.3s ease;
+}
+
+.input-container input[type="text"]:focus ~ .underline,
+.input-container input[type="text"]:valid ~ .underline {
+  transform: scaleX(1);
+}
+
+.input-container input[type="text"]::placeholder {
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.input-container input[type="text"]:focus::placeholder,
+.input-container input[type="text"]:valid::placeholder {
+  opacity: 1;
+}
