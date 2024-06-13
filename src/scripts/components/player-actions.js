@@ -25,14 +25,6 @@ AFRAME.registerComponent('player-actions', {
     window.addEventListener('keydown', e => crouch(e.key, element, 'down'));
     window.addEventListener('keyup', e => crouch(e.key, element, 'up'));
 
-    // Verificar clique na lousa
-    window.onclick = () => {
-      const blackboard = document.querySelector('#blackboard');
-      if(blackboard.states[0] === 'cursor-hovered') {
-        window.location.pathname = '/src/pages/classroom.html';
-      }
-    }
-
     // Pular
     window.addEventListener('keypress', e => {
       if(e.code === 'Space') {

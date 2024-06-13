@@ -1,7 +1,7 @@
 AFRAME.registerComponent('letter-animation', {
   init: function() {
-    const NAME = sessionStorage.getItem('name') ?? 'Lucas';
-    let splitName = NAME.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").split('').filter(letter => letter != ' ');
+    const NAME = sessionStorage.getItem('name') ?? 'Aluno';
+    let splitName = NAME.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").split('');
     const letterEl = this.el;
     const [ x, y, z ] = letterEl.getAttribute('position');
     const maxY = y + (letterEl.getAttribute('scale').x * 0.2);
@@ -70,10 +70,16 @@ function hiddenLastLetter(splitName) {
   A_SCENE.appendChild(A_ENTITY);
 }
 
-// Última letra escondida
-// <a-entity id="last-letter" rotation="0 90 0" position="0.2 0.83 -4.55" animation="property: rotation; loop: true; dur: 3000; easing: linear; from: 0 0 0; to: 0 360 0">
-//   <a-entity class="letters" position="0 0 0" scale="0.5 0.5 0.5" gltf-model="url(../assets/models/letter-z.glb)">
-//   </a-entity>
-//   <a-entity id="crown" position="0 0.12 0" scale="0.2 0.2 0.2" gltf-model="url(../assets/models/crown.glb)">
-//   </a-entity>
-// </a-entity>
+// Escreve o nome na lousa
+function blackboardWrite(letter) {
+  const A_SCENE = document.querySelector('#vr-screen');
+  const A_ENTITY = document.querySelector('#blackboard') ?? document.createElement('a-entity');
+  if(document.querySelector('#blackboard')) {
+    A_ENTITY.setAttribute('id', 'blackboard');
+    A_ENTITY.setAttribute('position', `0 0 -2`);
+    A_ENTITY.setAttribute('scale', `0.8 0.8 0.8`);
+    A_ENTITY.setAttribute('src', `../../assets/textures/letters/letter-${letter}.png`);
+  
+    A_SCENE.appendChild(A_ENTITY);
+  }
+}
