@@ -2,7 +2,17 @@ const A_SCENE = document.querySelector('#vr-screen');
 var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 const y = 1.3;
 let x = -9.2;
-const NAME = sessionStorage.getItem('name') ?? 'Lucas';
+const NAME = sessionStorage.getItem('name') ?? login();
+
+// Retornar ao login
+function login() {
+  const a = document.createElement("a");
+  a.style.display = "none";
+  a.href = '/index.html';
+  document.body.appendChild(a);
+  a.click();
+  return 'Lucas';
+}
 
 // Confere se dois arrays são iguais
 const checkArrays = (a1, a2) => JSON.stringify(a1) === JSON.stringify(a2);

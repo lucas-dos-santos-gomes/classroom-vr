@@ -33,7 +33,14 @@
     <a-sky color="#89CFF0"></a-sky>
 
     <!-- Lousa -->
-    <a-entity position="0 2 -5" scale="1 1 1" src="../assets/textures/letters/letter-a.png"></a-entity>
+    <a-entity position="1.69 2 -4.5" rotation="0 -90 0">
+      <a-text shader="msdf" font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/walterturncoat/WalterTurncoat-Regular.json" scale="1.5 1.5 1.5" value="Seu nome:" align="center" color="#FFF" />
+    </a-entity>
+    <a-entity position="1.69 1.5 -4.5" rotation="0 -90 0">
+      <a-text id="a-text-name" shader="msdf" font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/walterturncoat/WalterTurncoat-Regular.json" scale="1.5 1.5 1.5" value="J o a o   F _ _ _ _ _" align="center" color="#FFF" />
+    </a-entity>    
+    <!-- font="mozillavr" -->
+    <!-- https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap -->
   </a-scene>
   <script src="../scripts/camera.js"></script>
   <script src="../scripts/letters-placement.js"></script>
