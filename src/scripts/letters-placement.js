@@ -18,7 +18,7 @@ function login() {
 const checkArrays = (a1, a2) => JSON.stringify(a1) === JSON.stringify(a2);
 
 // Deixa o nome minúsculo, sem espaço e sem caracteres especiais
-let splitName = NAME.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").split('').filter(letter => letter != ' ');
+let splitName = NAME.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").split('');
 const NAME_LETTERS_AND_POSITIONS = getName(NAME, []);
 
 // Criando letras e posicionando em cima das mesas
@@ -40,7 +40,7 @@ for(let i = 0; i < 5; i++) {
     A_ENTITY.setAttribute('scale', `0.8 0.8 0.8`);
     A_ENTITY.setAttribute('rotation', `0 90 0`);
     A_ENTITY.setAttribute('gltf-model', `url(../assets/models/letter-${letter}.glb)`);
-    A_ENTITY.setAttribute('animation__2', `property: rotation; loop: true; dur: 3000; easing: linear; from: 0 0 0; to: 0 360 0`);
+    A_ENTITY.setAttribute('animation__rotation', `property: rotation; loop: true; dur: 3000; easing: linear; from: 0 0 0; to: 0 360 0`);
     A_ENTITY.setAttribute('letter-animation', 'true');
     A_ENTITY.setAttribute('data-letter', letter);
 

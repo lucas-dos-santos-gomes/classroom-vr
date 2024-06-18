@@ -8,6 +8,7 @@
   <title>Cenário interativo - VR</title>
   <script src="../scripts/components/player-actions.js"></script>
   <script src="../scripts/components/letter-animation.js"></script>
+  <script src="../scripts/components/name.js"></script>
 </head>
 <body>
   <a-scene id="vr-screen" loading-screen="dotsColor: red; backgroundColor: black">
@@ -37,7 +38,7 @@
       <a-text shader="msdf" font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/walterturncoat/WalterTurncoat-Regular.json" scale="1.5 1.5 1.5" value="Seu nome:" align="center" color="#FFF" />
     </a-entity>
     <a-entity position="1.69 1.4 -4.5" rotation="0 -90 0">
-      <a-text id="a-text-name" shader="msdf" font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/walterturncoat/WalterTurncoat-Regular.json" scale="1.5 1.5 1.5" value="J o a o   F _ _ _ _ _" align="center" color="#FFF" />
+      <a-text name id="a-text-name" shader="msdf" font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/walterturncoat/WalterTurncoat-Regular.json" scale="1.5 1.5 1.5" letter-spacing="10" align="center" color="#FFF" />
     </a-entity>    
     <!-- font="mozillavr" -->
     <!-- https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap -->
