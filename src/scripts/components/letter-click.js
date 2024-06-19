@@ -4,6 +4,8 @@ AFRAME.registerComponent('letter-click', {
     alert: {type: 'boolean', default: true},
   },
   init: function() {
+    console.log(this.el.setAttribute('position', {z: -0.1}))
+    console.log(this.el.getAttribute('position'))
     this.el.onclick = () => this.data.errors += verifyLetterClick();
   },
   tick: function() {
