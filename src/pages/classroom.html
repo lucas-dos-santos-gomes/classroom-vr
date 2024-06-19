@@ -23,7 +23,7 @@
   <a-scene id="vr-screen" loading-screen="dotsColor: blue; backgroundColor: black">
     <!-- Primeira pessoa -->
     <a-entity movement-controls="constrainToNavMesh: true; controls: checkpoint, gamepad, trackpad, keyboard, nipple;">
-      <a-camera wasd-controls="acceleration: 20" id="camera" look-controls="pointerLockEnabled: true" player-actions>
+      <a-camera wasd-controls="acceleration: 0.00001" id="camera" look-controls="pointerLockEnabled: true" player-actions>
         <a-cursor id="cursor" letter-click></a-cursor>
       </a-camera>
     </a-entity>
