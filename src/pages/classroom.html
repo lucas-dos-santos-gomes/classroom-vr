@@ -24,7 +24,7 @@
     <!-- Primeira pessoa -->
     <a-entity movement-controls="constrainToNavMesh: true; controls: checkpoint, gamepad, trackpad, keyboard, nipple;">
       <a-camera wasd-controls="acceleration: 20" id="camera" look-controls="pointerLockEnabled: true" player-actions>
-        <a-cursor id="cursor" position="0 0 -0.05" geometry="primitive: ring; radiusOuter: 0.0009; radiusInner: 0.0005" material="color: black; shader: flat" letter-click></a-cursor>
+        <a-cursor id="cursor" letter-click></a-cursor>
       </a-camera>
     </a-entity>
 
@@ -68,7 +68,7 @@
     <!-- <a-box position="0 0.5 -5" width="3" height="5" depth="1"></a-box> -->
   </a-scene>
   <script src="../scripts/letters-placement.js"></script>
-  <script>
+  <!-- <script>
     var scene = document.querySelector('a-scene');
     var cursor = document.querySelector('a-cursor');
     scene.addEventListener('enter-vr', () => {
@@ -79,5 +79,5 @@
       cursor.setAttribute('position', '0 0 -0.05');
       cursor.setAttribute('geometry', 'primitive: ring; radiusOuter: 0.0009; radiusInner: 0.0005" material="color: black; shader: flat');
     });
-  </script>
+  </script> -->
 </body>
