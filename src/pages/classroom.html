@@ -4,20 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="/src/assets/imgs/pencil-icon.png" type="image/x-icon">
+  <title>Cenário interativo - VR</title>
+
   <script src="../scripts/lib/aframe-v1-5-0.min.js"></script>
   <!-- <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script> -->
-  <title>Cenário interativo - VR</title>
+
   <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.min.js"></script>
   <!-- <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.0.0/dist/aframe-extras.min.js"></script> -->
+  
   <script src="../scripts/components/player-actions.js"></script>
   <script src="../scripts/components/letter-animation.js"></script>
+  <script src="../scripts/components/letter-click.js"></script>
   <script src="../scripts/components/name.js"></script>
+  <script src="../scripts/components/collider.js"></script>
 </head>
 <body>
   <a-scene physics="debug: true; friction: 1; restitution: 0" id="vr-screen" loading-screen="dotsColor: blue; backgroundColor: black">
     <!-- Primeira pessoa -->
     <a-camera static-body id="camera" look-controls="pointerLockEnabled: true" player-actions>
-      <a-cursor id="cursor" position="0 0 -0.05" geometry="primitive: ring; radiusOuter: 0.0009; radiusInner: 0.0005" material="color: black; shader: flat"></a-cursor>
+      <a-cursor id="cursor" position="0 0 -0.05" geometry="primitive: ring; radiusOuter: 0.0009; radiusInner: 0.0005" material="color: black; shader: flat" letter-click></a-cursor>
     </a-camera>
 
     <!-- Sala de Aula -->
@@ -36,18 +41,28 @@
     <!-- Céu -->
     <a-sky color="#89CFF0"></a-sky>
 
-    <!-- Lousa -->
+    <!-- Nome na lousa -->
     <a-entity position="1.69 2 -4.5" rotation="0 -90 0">
-      <a-text shader="msdf" font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/walterturncoat/WalterTurncoat-Regular.json" scale="1.5 1.5 1.5" value="Seu nome:" align="center" color="#FFF" />
+      <a-text shader="msdf" font="../assets/fonts/WalterTurncoat-Regular.json" scale="1.5 1.5 1.5" value="Seu nome:" align="center" color="#FFF" />
     </a-entity>
     <a-entity position="1.69 1.4 -4.5" rotation="0 -90 0">
-      <a-text name id="a-text-name" shader="msdf" font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/walterturncoat/WalterTurncoat-Regular.json" scale="1.5 1.5 1.5" letter-spacing="10" align="center" color="#FFF" />
+      <a-text name id="a-text-name" shader="msdf" font="../assets/fonts/WalterTurncoat-Regular.json" scale="1.5 1.5 1.5" letter-spacing="10" align="center" color="#FFF" />
+    </a-entity>
+
+    <!-- Erros na lousa -->
+    <a-entity position="-12.1 2.3 -5.3" rotation="0 90 0">
+      <a-text shader="msdf" font="../assets/fonts/WalterTurncoat-Regular.json" scale="1.5 1.5 1.5" value="Erros:" align="center" color="#FFF" />
+    </a-entity>
+    <a-entity position="-12.1 1.42 -4.1" rotation="0 90 0">
+      <a-text shader="msdf" font="../assets/fonts/WalterTurncoat-Regular.json" scale="3 3 3" value="O O O" letter-spacing="10" color="#FFF" />
+    </a-entity>
+    <a-entity position="-12.1 1.4 -4.12" rotation="0 90 0">
+      <a-text id="a-text-errors" shader="msdf" font="../assets/fonts/WalterTurncoat-Regular.json" scale="3 3 3"  letter-spacing="11.6" color="#FFF" />
     </a-entity>
 
     <!-- Pshysics -->
-    <a-sphere dynamic-body position="0 1.8 -2" scale="0.2 0.2 0.2"></a-sphere>
-    <a-box static-body position="0 0.5 -5" width="3" height="5" depth="1"></a-box>
+    <!-- <a-sphere dynamic-body position="0 1.8 -2" scale="0.2 0.2 0.2"></a-sphere>
+    <a-box static-body position="0 0.5 -5" width="3" height="5" depth="1"></a-box> -->
   </a-scene>
-  <!-- <script src="../scripts/camera.js"></script> -->
   <script src="../scripts/letters-placement.js"></script>
 </body>
