@@ -8,6 +8,7 @@
 
   <script src="../scripts/lib/aframe-v1-5-0.min.js"></script>
   <!-- <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script> -->
+  <script src="../scripts/lib/aframe-extras.js"></script>
 
   <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.min.js"></script>
   <!-- <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.0.0/dist/aframe-extras.min.js"></script> -->
@@ -21,9 +22,11 @@
 <body>
   <a-scene physics="debug: true; friction: 1; restitution: 0" id="vr-screen" loading-screen="dotsColor: blue; backgroundColor: black">
     <!-- Primeira pessoa -->
-    <a-camera static-body id="camera" look-controls="pointerLockEnabled: true" player-actions>
-      <a-cursor id="cursor" position="0 0 -0.05" geometry="primitive: ring; radiusOuter: 0.0009; radiusInner: 0.0005" material="color: black; shader: flat" letter-click></a-cursor>
-    </a-camera>
+    <a-entity movement-controls="constrainToNavMesh: true; controls: checkpoint, gamepad, trackpad, keyboard, nipple;">
+      <a-camera wasd-controls="acceleration: 20" id="camera" look-controls="pointerLockEnabled: true" player-actions>
+        <a-cursor letter-click></a-cursor>
+      </a-camera>
+    </a-entity>
 
     <!-- Sala de Aula -->
     <a-entity static-body id="classroom" scale="1.1 1.1 1.1" gltf-model="url(../assets/models/japanese_classroom.glb )"></a-entity>
@@ -36,7 +39,7 @@
     <a-light type="directional" position="-10 1 20" intensity="0.1"></a-light>
 
     <!-- Piso -->
-    <a-plane static-body src="../assets/textures/classroom-floor.jpg" position="0 0 0" rotation="-90 0 0" width="50" height="50" color="tan"></a-plane>
+    <a-plane static-body src="../assets/textures/classroom-floor.jpg" position="0 0 0" rotation="-90 0 0" width="30" height="30" color="tan"></a-plane>
 
     <!-- Céu -->
     <a-sky color="#89CFF0"></a-sky>
@@ -61,8 +64,8 @@
     </a-entity>
 
     <!-- Pshysics -->
-    <!-- <a-sphere dynamic-body position="0 1.8 -2" scale="0.2 0.2 0.2"></a-sphere>
-    <a-box static-body position="0 0.5 -5" width="3" height="5" depth="1"></a-box> -->
+    <!-- <a-sphere dynamic-body position="0 1.8 -2" scale="0.2 0.2 0.2"></a-sphere> -->
+    <a-box position="0 0.5 -5" width="3" height="5" depth="1"></a-box>
   </a-scene>
   <script src="../scripts/letters-placement.js"></script>
 </body>
