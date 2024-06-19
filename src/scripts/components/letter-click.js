@@ -1,6 +1,8 @@
+var errors = 0;
+
 AFRAME.registerComponent('letter-click', {
   schema: {
-    errors: {type: 'number', default: 0},
+    // errors: {type: 'number', default: 0},
     alert: {type: 'boolean', default: true},
     start: {default: undefined},
     rAF: {default: window.requestAnimationFrame},
@@ -8,29 +10,10 @@ AFRAME.registerComponent('letter-click', {
     interval: {default: undefined},
   },
   init: function() {
-    this.el.onclick = () => this.data.errors += verifyLetterClick();
-
-    // Fazer caso não exista evento de gamepad no navegador.
-    if(!('GamepadEvent' in window)) {
-      this.data.interval = setInterval(this.pollGamepads, 500);
-    };
-
-    // Controle conectado
-    window.addEventListener("gamepadconnected", (e) => {
-      const gp = navigator.getGamepads()[e.gamepad.index];
-      console.log(`Gamepad connected at index ${gp.index}: ${gp.id}. It has ${gp.buttons.length} buttons and ${gp.axes.length} axes.`);
-    
-      this.gameLoop();
-    });
-
-    // Controle disconectado
-    window.addEventListener("gamepaddisconnected", () => {
-      console.log("Waiting for gamepad.");    
-      this.data.rAFStop(this.data.start);
-    });
+    this.el.onclick = () => errors += verifyLetterClick();
   },
   tick: function() {
-    if(this.data.errors >= 3) {
+    if(errors >= 3) {
       if(this.data.alert) {
         alert('GAME OVER: Quantidade máxima de erros permitida');
         this.data.alert = false;
@@ -39,65 +22,77 @@ AFRAME.registerComponent('letter-click', {
       login();
     };
   },
-
-  gameLoop: function() {
-    var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
-    if(!gamepads) return;
-  
-    // 0 = C / 1 = A / 4 = D / 3 = B
-    var gp = gamepads[0];
-    if(this.buttonPressed(gp.buttons[7])) { // R1
-      console.log(gp.buttons[7]);
-    } else if(this.buttonPressed(gp.buttons[6])) { // R2
-      console.log(gp.buttons[6]);
-    }
-  
-    if(this.buttonPressed(gp.buttons[0])) {
-      console.log(gp.buttons[0]);
-    } else if(this.buttonPressed(gp.buttons[1])) {
-      console.log(gp.buttons[1]);
-    }
-    const loop = this.gameLoop();
-    this.data.start = this.data.rAF(loop);
-  },
-  pollGamepads: function() {
-    var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
-    for(let i = 0; i < gamepads.length; i++) {
-      var gp = gamepads[i];
-      if(gp) {
-        console.log("Gamepad connected at index " + gp.index + ": " + gp.id + ". It has " + gp.buttons.length + " buttons and " + gp.axes.length + " axes.");
-        this.gameLoop();
-        clearInterval(this.data.interval);
-      };
-    };
-  },
-  buttonPressed: function(btn) {
-    if(typeof(btn) == "object") {
-      return btn.pressed;
-    }
-    return btn == 1.0;
-  }
 });
 
+window.addEventListener("gamepadconnected", (e) => {
+  const gp = navigator.getGamepads()[e.gamepad.index];
+  console.log(e);
+  console.log(`Gamepad connected at index ${gp.index}: ${gp.id}. It has ${gp.buttons.length} buttons and ${gp.axes.length} axes.`);
+  console.log(gp.buttons);
+
+  gameLoop();
+});
+
+var start;
+var rAF = window.requestAnimationFrame;
+var rAFStop = window.cancelAnimationFrame;
+
+window.addEventListener("gamepaddisconnected", function() {
+  gamepadInfo.innerHTML = "Waiting for gamepad.";
+
+  rAFStop(start);
+});
+
+if(!('GamepadEvent' in window)) {
+  // No gamepad events available, poll instead.
+  var interval = setInterval(pollGamepads, 500);
+}
+
+function pollGamepads() {
+  var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
+  for(let i = 0; i < gamepads.length; i++) {
+    var gp = gamepads[i];
+    if(gp) {
+      gamepadInfo.innerHTML = "Gamepad connected at index " + gp.index + ": " + gp.id + ". It has " + gp.buttons.length + " buttons and " + gp.axes.length + " axes.";
+      gameLoop();
+      clearInterval(interval);
+    }
+  }
+}
+
+function buttonPressed(b) {
+  if(typeof(b) == "object") {
+    return b.pressed;
+  }
+  return b == 1.0;
+}
+
+
+var pauseClick = false;
+var crouchDown = true;
 function gameLoop() {
   var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
   if(!gamepads) return;
 
   // 0 = C / 1 = A / 4 = D / 3 = B
   var gp = gamepads[0];
-  if(buttonPressed(gp.buttons[7])) { // R1
-    console.log(gp.buttons[7]);
-  } else if(buttonPressed(gp.buttons[6])) { // R2
-    console.log(gp.buttons[6]);
+  if(!pauseClick) {
+    if(buttonPressed(gp.buttons[7])) { // R1
+      console.log(gp.buttons[7]);
+      errors += verifyLetterClick();
+    } else if(buttonPressed(gp.buttons[6])) { // R2
+      crouch(document.querySelector('a-camera'), crouchDown ? 'down' : 'up');
+      crouchDown = !crouchDown;
+    } else if(buttonPressed(gp.buttons[0])) {
+      console.log(gp.buttons[0]);
+    } else if(buttonPressed(gp.buttons[1])) {
+      console.log(gp.buttons[1]);
+    }
+    pauseClick = true;
   }
+  pauseClick = gp.buttons.filter(e => e.pressed || e.touched).length > 0 && pauseClick;
 
-  if(buttonPressed(gp.buttons[0])) {
-    console.log(gp.buttons[0]);
-  } else if(buttonPressed(gp.buttons[1])) {
-    console.log(gp.buttons[1]);
-  }
-
-  var start = rAF(gameLoop);
+  start = rAF(gameLoop);
 };
 
 // Retorna à página de Login
@@ -124,6 +119,7 @@ function verifyLetterClick() {
           let [x, y, z] = letter.parentEl.getAttribute('position');
           letter.parentEl.setAttribute('animation__final', `property: position; loop: false; dur: 2000; easing: linear; from: ${x} ${y} ${z}; to: ${x} ${y+10} ${z}`);
           alert('PARABÉNS! Você concluiu o jogo com excelência!');
+          setTimeout(() => login(), 10000);
           return 0;
         }
         letter.setAttribute('animation', `property: position; loop: false; dur: 2000; easing: linear; from: ${x} ${y} ${z}; to: ${x} ${y+10} ${z}`);
@@ -166,4 +162,20 @@ function hiddenLastLetter(splitName) {
   A_ENTITY.appendChild(A_LETTER);
   A_ENTITY.appendChild(A_CROWN);
   A_SCENE.appendChild(A_ENTITY);
+}
+
+function crouch(element, direction) {
+  const position = element.getAttribute('position');
+  const axisY = position.y;
+  let count = axisY;
+
+  let intervalId = setInterval(() => {
+    count = (direction === 'down' ? (count - 0.1) : (count + 0.1));
+    element.setAttribute('position', {
+      x: element.getAttribute('position').x,
+      y: direction ==='down' ? (count >= 0.8 ? count : 0.8) : (count <= 1.6 ? count : 1.6),
+      z: element.getAttribute('position').z,
+    });
+    direction === 'down' ? (count <= 0.8 && clearInterval(intervalId)) : (count >= 1.6 && clearInterval(intervalId));
+  }, 18);
 }
