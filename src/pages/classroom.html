@@ -24,7 +24,7 @@
     <!-- Primeira pessoa -->
     <a-entity movement-controls="constrainToNavMesh: true; controls: checkpoint, gamepad, trackpad, keyboard, nipple;">
       <a-camera wasd-controls="acceleration: 20" id="camera" look-controls="pointerLockEnabled: true" player-actions>
-        <a-cursor letter-click></a-cursor>
+        <a-cursor id="cursor" letter-click></a-cursor>
       </a-camera>
     </a-entity>
 
@@ -65,7 +65,18 @@
 
     <!-- Pshysics -->
     <!-- <a-sphere dynamic-body position="0 1.8 -2" scale="0.2 0.2 0.2"></a-sphere> -->
-    <a-box position="0 0.5 -5" width="3" height="5" depth="1"></a-box>
+    <!-- <a-box position="0 0.5 -5" width="3" height="5" depth="1"></a-box> -->
   </a-scene>
   <script src="../scripts/letters-placement.js"></script>
+  <script>
+    window.addEventListener("gamepadconnected", (e) => {
+    console.log(
+    "Gamepad connected at index %d: %s. %d buttons, %d axes.",
+    e.gamepad.index,
+    e.gamepad.id,
+    e.gamepad.buttons.length,
+    e.gamepad.axes.length,
+  );
+});
+  </script>
 </body>

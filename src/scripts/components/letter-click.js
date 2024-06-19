@@ -4,8 +4,6 @@ AFRAME.registerComponent('letter-click', {
     alert: {type: 'boolean', default: true},
   },
   init: function() {
-    console.log(this.el.setAttribute('position', {z: -0.1}))
-    console.log(this.el.getAttribute('position'))
     this.el.onclick = () => this.data.errors += verifyLetterClick();
   },
   tick: function() {
@@ -41,6 +39,7 @@ function verifyLetterClick() {
         if(letter.parentEl.id == 'last-letter') {
           let [x, y, z] = letter.parentEl.getAttribute('position');
           letter.parentEl.setAttribute('animation__final', `property: position; loop: false; dur: 2000; easing: linear; from: ${x} ${y} ${z}; to: ${x} ${y+10} ${z}`);
+          alert('PARABÉNS! Você concluiu o jogo com excelência!');
           return 0;
         }
         letter.setAttribute('animation', `property: position; loop: false; dur: 2000; easing: linear; from: ${x} ${y} ${z}; to: ${x} ${y+10} ${z}`);
