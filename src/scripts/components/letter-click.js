@@ -81,12 +81,8 @@ function gameLoop() {
       console.log(gp.buttons[7]);
       errors += verifyLetterClick();
     } else if(buttonPressed(gp.buttons[6])) { // R2
-      crouch(document.querySelector('a-camera'), crouchDown ? 'down' : 'up');
+      crouchHere(document.querySelector('a-camera'), crouchDown ? 'down' : 'up');
       crouchDown = !crouchDown;
-    } else if(buttonPressed(gp.buttons[0])) {
-      console.log(gp.buttons[0]);
-    } else if(buttonPressed(gp.buttons[1])) {
-      console.log(gp.buttons[1]);
     }
     pauseClick = true;
   }
@@ -164,7 +160,7 @@ function hiddenLastLetter(splitName) {
   A_SCENE.appendChild(A_ENTITY);
 }
 
-function crouch(element, direction) {
+function crouchHere(element, direction) {
   const position = element.getAttribute('position');
   const axisY = position.y;
   let count = axisY;
