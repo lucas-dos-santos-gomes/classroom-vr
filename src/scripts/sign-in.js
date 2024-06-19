@@ -6,7 +6,7 @@ const saveName = () => sessionStorage.setItem('name', input.value.trim());
 function sigin() {
   const a = document.createElement("a");
   a.style.display = "none";
-  a.href = '/src/pages/classroom.html';
+  a.href = './src/pages/classroom.html';
   document.body.appendChild(a);
   a.click();
 };

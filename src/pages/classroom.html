@@ -4,21 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="/src/assets/imgs/pencil-icon.png" type="image/x-icon">
-  <script src="../scripts/lib/aframe.min.js"></script>
+  <script src="../scripts/lib/aframe-v1-5-0.min.js"></script>
+  <!-- <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script> -->
   <title>Cenário interativo - VR</title>
+  <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.0.0/dist/aframe-extras.min.js"></script> -->
   <script src="../scripts/components/player-actions.js"></script>
   <script src="../scripts/components/letter-animation.js"></script>
   <script src="../scripts/components/name.js"></script>
 </head>
 <body>
-  <a-scene id="vr-screen" loading-screen="dotsColor: red; backgroundColor: black">
+  <a-scene physics="debug: true; friction: 1; restitution: 0" id="vr-screen" loading-screen="dotsColor: blue; backgroundColor: black">
     <!-- Primeira pessoa -->
-    <a-camera id="camera" player-actions>
+    <a-camera static-body id="camera" look-controls="pointerLockEnabled: true" player-actions>
       <a-cursor id="cursor" position="0 0 -0.05" geometry="primitive: ring; radiusOuter: 0.0009; radiusInner: 0.0005" material="color: black; shader: flat"></a-cursor>
     </a-camera>
 
     <!-- Sala de Aula -->
-    <a-entity id="classroom" scale="1.1 1.1 1.1" gltf-model="url(../assets/models/japanese_classroom.glb )"></a-entity>
+    <a-entity static-body id="classroom" scale="1.1 1.1 1.1" gltf-model="url(../assets/models/japanese_classroom.glb )"></a-entity>
 
     <!-- Lights -->
     <a-entity position="0 50 -10" a-entity id="sun" scale="5 5 5" gltf-model="url(../assets/models/sun.glb)" light="type: point; intensity: 2;"></a-entity>
@@ -28,7 +31,7 @@
     <a-light type="directional" position="-10 1 20" intensity="0.1"></a-light>
 
     <!-- Piso -->
-    <a-plane src="../assets/textures/classroom-floor.jpg" position="0 0.1 0" rotation="-90 0 0" width="50" height="50" color="tan"></a-plane>
+    <a-plane static-body src="../assets/textures/classroom-floor.jpg" position="0 0 0" rotation="-90 0 0" width="50" height="50" color="tan"></a-plane>
 
     <!-- Céu -->
     <a-sky color="#89CFF0"></a-sky>
@@ -39,10 +42,12 @@
     </a-entity>
     <a-entity position="1.69 1.4 -4.5" rotation="0 -90 0">
       <a-text name id="a-text-name" shader="msdf" font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/walterturncoat/WalterTurncoat-Regular.json" scale="1.5 1.5 1.5" letter-spacing="10" align="center" color="#FFF" />
-    </a-entity>    
-    <!-- font="mozillavr" -->
-    <!-- https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap -->
+    </a-entity>
+
+    <!-- Pshysics -->
+    <a-sphere dynamic-body position="0 1.8 -2" scale="0.2 0.2 0.2"></a-sphere>
+    <a-box static-body position="0 0.5 -5" width="3" height="5" depth="1"></a-box>
   </a-scene>
-  <script src="../scripts/camera.js"></script>
+  <!-- <script src="../scripts/camera.js"></script> -->
   <script src="../scripts/letters-placement.js"></script>
 </body>
