@@ -75,7 +75,7 @@ function hiddenLastLetter(splitName) {
 function login() {
   const a = document.createElement("a");
   a.style.display = "none";
-  a.href = '/index.html';
+  a.href = '../../index.html';
   document.body.appendChild(a);
   a.click();
   return 'Lucas';
