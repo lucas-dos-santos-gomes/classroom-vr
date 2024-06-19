@@ -17,36 +17,6 @@ AFRAME.registerComponent('letter-animation', {
       letterEl.setAttribute('animation', animation);
     };
     letterEl.addEventListener('animationcomplete', animationLoop);
-
-    setTimeout(() => {
-      // Verificar clique nas letras
-      // window.onclick = () => {
-      //   const letters = document.querySelectorAll('.letters');
-      //   letters.forEach((letter) => {
-      //     if(letter.states[0] === 'cursor-hovered') {
-      //       if(letter.states[0] === 'cursor-hovered' && letter.getAttribute('data-letter') === splitName[0]) {
-      //         const A_TEXT = document.querySelector('#a-text-name');
-      //         A_TEXT.setAttribute('value', A_TEXT.getAttribute('value').replace('_', splitName.shift()));
-      //         let [x, y, z] = letter.getAttribute('position');
-      //         if(letter.parentEl.id == 'last-letter') {
-      //           let [x, y, z] = letter.parentEl.getAttribute('position');
-      //           letter.parentEl.setAttribute('animation__final', `property: position; loop: false; dur: 2000; easing: linear; from: ${x} ${y} ${z}; to: ${x} ${y+10} ${z}`);
-      //           return;
-      //         }
-      //         letter.setAttribute('animation', `property: position; loop: false; dur: 2000; easing: linear; from: ${x} ${y} ${z}; to: ${x} ${y+10} ${z}`);
-      //         setTimeout(() => {
-      //           letter.parentEl.removeChild(letter);
-      //         }, 500);
-      //         splitName.length === 1 && hiddenLastLetter(splitName);
-      //       } else if(letter.states[0] === 'cursor-hovered' && letter.getAttribute('data-letter') !== splitName[0]) {
-      //         console.log('teste');
-      //         const A_TEXT = document.querySelector('#a-text-errors');
-      //         A_TEXT.setAttribute('value', A_TEXT.getAttribute('value') += 'X ');
-      //       };
-      //     };
-      //   });
-      // }
-    }, 2000);
   }
 });
 

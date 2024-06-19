@@ -1,12 +1,34 @@
 AFRAME.registerComponent('letter-click', {
-  init: function () {
-    this.el.onclick = verifyLetterClick;
-  }
+  schema: {
+    errors: {type: 'number', default: 0},
+    alert: {type: 'boolean', default: true},
+  },
+  init: function() {
+    this.el.onclick = () => this.data.errors += verifyLetterClick();
+  },
+  tick: function() {
+    if(this.data.errors >= 3) {
+      if(this.data.alert) {
+        alert('GAME OVER: Quantidade máxima de erros permitida');
+        this.data.alert = false;
+      }
+      sessionStorage.removeItem('name');
+      login();
+    }
+  },
 });
 
-
+function login() {
+  const a = document.createElement("a");
+  a.style.display = "none";
+  a.href = '../../index.html';
+  document.body.appendChild(a);
+  a.click();
+  return 'Lucas';
+}
 
 function verifyLetterClick() {
+  let count = 0;
   const letters = document.querySelectorAll('.letters');
   letters.forEach((letter) => {
     if(letter.states[0] === 'cursor-hovered') {
@@ -17,7 +39,7 @@ function verifyLetterClick() {
         if(letter.parentEl.id == 'last-letter') {
           let [x, y, z] = letter.parentEl.getAttribute('position');
           letter.parentEl.setAttribute('animation__final', `property: position; loop: false; dur: 2000; easing: linear; from: ${x} ${y} ${z}; to: ${x} ${y+10} ${z}`);
-          return;
+          return 0;
         }
         letter.setAttribute('animation', `property: position; loop: false; dur: 2000; easing: linear; from: ${x} ${y} ${z}; to: ${x} ${y+10} ${z}`);
         setTimeout(() => {
@@ -27,9 +49,11 @@ function verifyLetterClick() {
       } else {
         const A_TEXT = document.querySelector('#a-text-errors');
         A_TEXT.setAttribute('value', A_TEXT.getAttribute('value') ? A_TEXT.getAttribute('value') + 'X ' : 'X ');
+        count = 1;
       };
     };
   });
+  return count;
 }
 
 // Última letra escondida
