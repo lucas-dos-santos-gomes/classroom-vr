@@ -2,22 +2,105 @@ AFRAME.registerComponent('letter-click', {
   schema: {
     errors: {type: 'number', default: 0},
     alert: {type: 'boolean', default: true},
+    start: {default: undefined},
+    rAF: {default: window.requestAnimationFrame},
+    rAFStop: {default: window.cancelAnimationFrame},
+    interval: {default: undefined},
   },
   init: function() {
     this.el.onclick = () => this.data.errors += verifyLetterClick();
+
+    // Fazer caso não exista evento de gamepad no navegador.
+    if(!('GamepadEvent' in window)) {
+      this.data.interval = setInterval(this.pollGamepads, 500);
+    };
+
+    // Controle conectado
+    window.addEventListener("gamepadconnected", (e) => {
+      const gp = navigator.getGamepads()[e.gamepad.index];
+      console.log(`Gamepad connected at index ${gp.index}: ${gp.id}. It has ${gp.buttons.length} buttons and ${gp.axes.length} axes.`);
+    
+      this.gameLoop();
+    });
+
+    // Controle disconectado
+    window.addEventListener("gamepaddisconnected", () => {
+      console.log("Waiting for gamepad.");    
+      this.data.rAFStop(this.data.start);
+    });
   },
   tick: function() {
     if(this.data.errors >= 3) {
       if(this.data.alert) {
         alert('GAME OVER: Quantidade máxima de erros permitida');
         this.data.alert = false;
-      }
+      };
       sessionStorage.removeItem('name');
       login();
-    }
+    };
   },
+
+  gameLoop: function() {
+    var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
+    if(!gamepads) return;
+  
+    // 0 = C / 1 = A / 4 = D / 3 = B
+    var gp = gamepads[0];
+    if(this.buttonPressed(gp.buttons[7])) { // R1
+      console.log(gp.buttons[7]);
+    } else if(this.buttonPressed(gp.buttons[6])) { // R2
+      console.log(gp.buttons[6]);
+    }
+  
+    if(this.buttonPressed(gp.buttons[0])) {
+      console.log(gp.buttons[0]);
+    } else if(this.buttonPressed(gp.buttons[1])) {
+      console.log(gp.buttons[1]);
+    }
+    const loop = this.gameLoop();
+    this.data.start = this.data.rAF(loop);
+  },
+  pollGamepads: function() {
+    var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
+    for(let i = 0; i < gamepads.length; i++) {
+      var gp = gamepads[i];
+      if(gp) {
+        console.log("Gamepad connected at index " + gp.index + ": " + gp.id + ". It has " + gp.buttons.length + " buttons and " + gp.axes.length + " axes.");
+        this.gameLoop();
+        clearInterval(this.data.interval);
+      };
+    };
+  },
+  buttonPressed: function(btn) {
+    if(typeof(btn) == "object") {
+      return btn.pressed;
+    }
+    return btn == 1.0;
+  }
 });
 
+function gameLoop() {
+  var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
+  if(!gamepads) return;
+
+  // 0 = C / 1 = A / 4 = D / 3 = B
+  var gp = gamepads[0];
+  if(buttonPressed(gp.buttons[7])) { // R1
+    console.log(gp.buttons[7]);
+  } else if(buttonPressed(gp.buttons[6])) { // R2
+    console.log(gp.buttons[6]);
+  }
+
+  if(buttonPressed(gp.buttons[0])) {
+    console.log(gp.buttons[0]);
+  } else if(buttonPressed(gp.buttons[1])) {
+    console.log(gp.buttons[1]);
+  }
+
+  var start = rAF(gameLoop);
+};
+
+// Retorna à página de Login
 function login() {
   const a = document.createElement("a");
   a.style.display = "none";
@@ -27,6 +110,7 @@ function login() {
   return 'Lucas';
 }
 
+// Verifica o clique nas letras e determina uma ação
 function verifyLetterClick() {
   let count = 0;
   const letters = document.querySelectorAll('.letters');
